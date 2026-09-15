@@ -5,10 +5,12 @@ export type Project = {
   tech: string[];
   href: string;
   gradient: string;
+  previewType: "portfolio" | "freelance";
 };
 
 export const projects: Project[] = [
   {
+    previewType: "portfolio",
     title: "Personal Website V2",
     category: "Engineering · Design",
     description:
@@ -19,6 +21,7 @@ export const projects: Project[] = [
       "radial-gradient(circle at 30% 30%, rgba(99,102,241,0.75), transparent 35%), radial-gradient(circle at 75% 65%, rgba(14,165,233,0.55), transparent 35%), #09090b",
   },
   {
+    previewType: "freelance",
     title: "Freelance Web Archive",
     category: "Web Development · Client Work",
     description:

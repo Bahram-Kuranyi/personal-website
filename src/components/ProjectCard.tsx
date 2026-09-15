@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Project } from "@/data/projects";
+import ProjectPreview from "@/components/ProjectPreview";
 
 type ProjectCardProps = {
   project: Project;
@@ -9,31 +10,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
   return (
     <Link href={project.href} className="group block">
       <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-1 hover:border-white/20">
-        
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <div
-            className="absolute inset-0 transition-transform duration-700 group-hover:scale-105"
-            style={{ background: project.gradient }}
-          />
-
-          <div className="absolute inset-6 flex flex-col justify-between rounded-[1.5rem] border border-white/10 bg-black/25 p-5 backdrop-blur-xl sm:inset-10">
-            
-            <div className="flex gap-2">
-              <span className="h-2 w-2 rounded-full bg-white/30" />
-              <span className="h-2 w-2 rounded-full bg-white/20" />
-              <span className="h-2 w-2 rounded-full bg-white/10" />
-            </div>
-
-            <div className="space-y-3">
-              <div className="h-2 w-2/3 rounded-full bg-white/20" />
-              <div className="h-2 w-1/2 rounded-full bg-white/10" />
-              <div className="h-2 w-3/4 rounded-full bg-white/10" />
-            </div>
-
-            <span className="text-xs uppercase tracking-[0.25em] text-white/40">
-              Preview
-            </span>
-          </div>
+        <div className="aspect-[16/10] overflow-hidden">
+          <ProjectPreview type={project.previewType} />
         </div>
 
         <div className="p-6 sm:p-8">
