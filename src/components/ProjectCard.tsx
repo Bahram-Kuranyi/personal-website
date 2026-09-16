@@ -8,7 +8,7 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <Link href={project.href} className="group block">
+    <Link href={`/work/${project.slug}`} className="group block">
       <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-1 hover:border-white/20">
         <div className="aspect-[16/10] overflow-hidden">
           <ProjectPreview type={project.previewType} />

@@ -3,7 +3,7 @@ export type Project = {
   category: string;
   description: string;
   tech: string[];
-  href: string;
+  slug: string;
   gradient: string;
   previewType: "portfolio" | "freelance";
 };
@@ -12,6 +12,7 @@ export const projects: Project[] = [
   {
     previewType: "portfolio",
     title: "Personal Website V2",
+    slug: "personal-website",
     category: "Engineering · Design",
     description:
       "A bilingual, interaction-led portfolio designed and engineered from scratch.",
@@ -23,6 +24,7 @@ export const projects: Project[] = [
   {
     previewType: "freelance",
     title: "Freelance Web Archive",
+    slug: "freelance-web-archive",
     category: "Web Development · Client Work",
     description:
       "Selected websites and digital experiences from earlier freelance work.",

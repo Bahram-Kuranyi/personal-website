@@ -5,7 +5,6 @@ import { projects } from "@/data/projects";
 export default function WorkPage() {
   return (
     <main className="min-h-screen bg-black text-white">
-
       <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
           href="/"
@@ -14,13 +13,10 @@ export default function WorkPage() {
           ← Bahram Kuranyi
         </Link>
 
-        <span className="text-sm text-zinc-600">
-          Selected Work
-        </span>
+        <span className="text-sm text-zinc-600">Selected Work</span>
       </header>
 
       <section className="mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
-        
         <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
           Portfolio
         </p>
@@ -32,10 +28,9 @@ export default function WorkPage() {
         </h1>
 
         <div className="mt-28 space-y-32">
-
           {projects.map((project) => (
             <article
-              id={project.href.split("#")[1]}
+              id={project.slug}
               key={project.title}
               className="scroll-mt-20"
             >
@@ -57,10 +52,8 @@ export default function WorkPage() {
               />
             </article>
           ))}
-
         </div>
       </section>
-
     </main>
   );
 }
