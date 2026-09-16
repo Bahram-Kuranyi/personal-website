@@ -19,11 +19,15 @@ export function generateStaticParams() {
 export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug } = await params;
 
-  const project = projects.find((project) => project.slug === slug);
+  const projectIndex = projects.findIndex((project) => project.slug === slug);
 
-  if (!project) {
+  if (projectIndex === -1) {
     notFound();
   }
+
+  const project = projects[projectIndex];
+
+  const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
     <main className="min-h-screen bg-black text-white">
@@ -64,6 +68,27 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
         <div className="mt-20 overflow-hidden rounded-[2rem] border border-white/10">
           <ProjectPreview type={project.previewType} />
+        </div>
+        <div className="mt-24 flex flex-col justify-between gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-end">
+          <div>
+            <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
+              Next project
+            </p>
+
+            <Link
+              href={`/work/${nextProject.slug}`}
+              className="mt-3 block text-3xl font-medium tracking-tight transition hover:text-zinc-400 md:text-4xl"
+            >
+              {nextProject.title} →
+            </Link>
+          </div>
+
+          <Link
+            href="/work"
+            className="text-sm text-zinc-500 transition hover:text-white"
+          >
+            View all work
+          </Link>
         </div>
       </article>
     </main>
