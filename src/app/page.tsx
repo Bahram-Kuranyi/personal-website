@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import HeroCard from "@/components/HeroCard";
+import SoftwareBackground from "@/components/SoftwareBackground";
 import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
 
@@ -11,9 +12,10 @@ export default function Home() {
   return (
     <main className="bg-black text-white">
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative isolate min-h-screen overflow-hidden">
         <div className="hero-orb hero-orb-one" />
         <div className="hero-orb hero-orb-two" />
+        <SoftwareBackground id="hero-software" />
 
         <header className="absolute left-0 top-0 z-20 w-full">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-12 lg:px-16">
