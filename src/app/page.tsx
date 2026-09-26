@@ -10,12 +10,12 @@ import { experiences } from "@/data/experience";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
+      <SoftwareBackground id="hero-software" />
       {/* HERO */}
       <section className="relative isolate min-h-screen overflow-hidden">
         <div className="hero-orb hero-orb-one" />
         <div className="hero-orb hero-orb-two" />
-        <SoftwareBackground id="hero-software" />
 
         <header className="absolute left-0 top-0 z-20 w-full">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 md:px-12 lg:px-16">

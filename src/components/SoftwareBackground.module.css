@@ -1,42 +1,56 @@
 .background {
-  position: absolute;
+  position: fixed;
   inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
-  /* Fade the perimeter, leaving the near-touch visible in the lower Hero. */
-  mask-image: radial-gradient(ellipse at 50% 65%, black 15%, transparent 75%);
+  /* Keep the artwork in the lower viewport as page content passes above it. */
+  mask-image: radial-gradient(ellipse at 50% 80%, black 25%, transparent 85%);
 }
 
 .canvas {
   position: absolute;
   left: 50%;
-  bottom: -12%;
+  bottom: -16%;
   width: max(100%, 900px);
   height: auto;
   max-height: 85%;
   transform: translateX(-50%);
-  opacity: 0.65;
+  opacity: 1;
 }
 
 .human {
   color: #a5b4fc;
+  transform: translate(calc(var(--software-travel, 0px) * -0.65), calc(var(--software-travel, 0px) * 0.2));
   transform-box: fill-box;
   transform-origin: left center;
 }
 
 .robot {
   color: #7dd3fc;
+  transform: translate(var(--software-travel, 0px), calc(var(--software-travel, 0px) * 0.3));
   transform-box: fill-box;
   transform-origin: right center;
 }
 
+.connection {
+  transform: translateY(calc(var(--software-travel, 0px) * 0.1));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .human,
+  .robot,
+  .connection {
+    transform: none;
+  }
+}
+
 @media (max-width: 767px) {
   .canvas {
-    bottom: -7%;
+    bottom: -10%;
     width: 760px;
     max-height: 65%;
-    opacity: 0.45;
+    opacity: 0.8;
   }
 }

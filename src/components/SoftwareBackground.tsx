@@ -1,4 +1,5 @@
 import styles from "./SoftwareBackground.module.css";
+import SoftwareBackgroundMotion from "./SoftwareBackgroundMotion";
 
 // Curved, open contours suggest a human reach; stepped contours suggest a machine.
 // Keep each side independent so a later stage can transform them separately.
@@ -32,7 +33,7 @@ type SoftwareBackgroundProps = {
 
 export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
   return (
-    <div className={styles.background} aria-hidden="true">
+    <SoftwareBackgroundMotion>
       <svg
         className={styles.canvas}
         viewBox="0 0 1200 660"
@@ -63,7 +64,7 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
           ))}
         </defs>
 
-        <g data-layer="connection">
+        <g data-layer="connection" className={styles.connection}>
           <ellipse cx="594" cy="272" rx="155" ry="115" fill={`url(#${id}-glow)`} />
           <path d="M571 272h13m21 0h13" stroke="#c7d2fe" strokeOpacity="0.2" />
           <circle cx="594" cy="272" r="2" fill="#dbeafe" fillOpacity="0.45" />
@@ -72,8 +73,8 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
         {contours.map(({ side, outline, lines }) => (
           <g key={side} data-layer={side} className={styles[side]}>
             <g clipPath={`url(#${id}-${side})`}>
-              <path d={outline} fill="currentColor" fillOpacity="0.025" />
-              <path d={outline} fill={`url(#${id}-fragments)`} fillOpacity="0.38" />
+              <path d={outline} fill="currentColor" fillOpacity="0.045" />
+              <path d={outline} fill={`url(#${id}-fragments)`} fillOpacity="0.55" />
               {lines.map((line) => (
                 <path key={line} d={line} stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.8" strokeDasharray="24 14 3 12" />
               ))}
@@ -81,6 +82,6 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
           </g>
         ))}
       </svg>
-    </div>
+    </SoftwareBackgroundMotion>
   );
 }
