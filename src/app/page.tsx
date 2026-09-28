@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import HeroCard from "@/components/HeroCard";
+import SoftwareBackground from "@/components/SoftwareBackground";
 import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
 
@@ -9,9 +10,10 @@ import { experiences } from "@/data/experience";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white">
+    <main className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
+      <SoftwareBackground id="hero-software" />
       {/* HERO */}
-      <section className="relative min-h-screen overflow-hidden">
+      <section className="relative isolate min-h-screen overflow-hidden">
         <div className="hero-orb hero-orb-one" />
         <div className="hero-orb hero-orb-two" />
 
