@@ -5,18 +5,19 @@
   overflow: hidden;
   pointer-events: none;
   user-select: none;
-  /* Keep the artwork in the lower viewport as page content passes above it. */
-  mask-image: radial-gradient(ellipse at 50% 80%, black 25%, transparent 85%);
+  /* Keep the approved midpoint fixed while page content passes above it. */
+  mask-image: radial-gradient(ellipse at 50% 55%, black 25%, transparent 85%);
 }
 
 .canvas {
   position: absolute;
   left: 50%;
-  bottom: -16%;
-  width: max(100%, 900px);
+  top: 55%;
+  /* Continuous scaling through the tablet breakpoint, with the mobile crop preserved. */
+  width: max(100%, 760px);
   height: auto;
-  max-height: 85%;
-  transform: translateX(-50%);
+  /* Anchor the fingertip midpoint (594, 302) within the 1200 × 660 viewBox. */
+  transform: translate(-49.5%, -45.757576%);
   opacity: 1;
 }
 
@@ -38,19 +39,36 @@
   transform: translateY(calc(var(--software-travel, 0px) * 0.1));
 }
 
+.human,
+.robot,
+.connection {
+  opacity: var(--hand-opacity, 1);
+}
+
+.fragments {
+  opacity: calc(var(--fragment-opacity, 0) * 0.55);
+}
+
+.network {
+  opacity: var(--network-opacity, 0);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .human,
   .robot,
   .connection {
     transform: none;
+    opacity: 1;
+  }
+
+  .fragments,
+  .network {
+    display: none;
   }
 }
 
 @media (max-width: 767px) {
   .canvas {
-    bottom: -10%;
-    width: 760px;
-    max-height: 65%;
     opacity: 0.8;
   }
 }
