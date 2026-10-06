@@ -10,6 +10,13 @@ import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
 import { routes, site, navigation } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { pageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = requireLocale((await params).locale);
+  const t = getDictionary(locale);
+  return pageMetadata(locale, "", `${site.name} — ${t.seo.home}`, t.seo.description);
+}
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);

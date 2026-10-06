@@ -4,8 +4,15 @@ import WorkConstellation from "@/components/WorkConstellation";
 import { getProjects } from "@/data/localized";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
-import { routes } from "@/lib/site";
+import { routes, site } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { pageMetadata } from "@/lib/metadata";
+
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const locale = requireLocale((await params).locale);
+  const t = getDictionary(locale);
+  return pageMetadata(locale, "/work", `${t.seo.work} — ${site.name}`, t.seo.workDescription);
+}
 
 export default async function WorkPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);

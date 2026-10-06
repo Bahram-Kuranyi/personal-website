@@ -7,8 +7,9 @@ import { projects } from "@/data/projects";
 import { getProjects } from "@/data/localized";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
-import { routes } from "@/lib/site";
+import { routes, site } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
+import { pageMetadata } from "@/lib/metadata";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -18,6 +19,14 @@ type ProjectPageProps = {
 };
 
 export const dynamicParams = false;
+
+export async function generateMetadata({ params }: ProjectPageProps) {
+  const { slug, locale: code } = await params;
+  const locale = requireLocale(code);
+  const project = getProjects(locale).find((project) => project.slug === slug);
+  if (!project) notFound();
+  return pageMetadata(locale, `/work/${project.slug}`, `${project.title} — ${site.name}`, project.description);
+}
 
 export function generateStaticParams() {
   return projects.map((project) => ({

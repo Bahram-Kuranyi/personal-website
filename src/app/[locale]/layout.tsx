@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { locales } from "@/lib/site";
+import { locales, siteUrl, isIndexable } from "@/lib/site";
 import { requireLocale } from "@/lib/locale";
 
 const geistSans = Geist({
@@ -15,8 +15,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: siteUrl,
   title: "Bahram Kuranyi — Software Engineer",
   description: "Software engineering, AI and modern web products.",
+  robots: { index: isIndexable, follow: isIndexable },
 };
 
 export function generateStaticParams() { return locales.map((locale) => ({ locale })); }
