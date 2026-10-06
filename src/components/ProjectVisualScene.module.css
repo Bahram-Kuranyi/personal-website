@@ -1,0 +1,60 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.components { --accent: 224, 177, 92; }
+.windows { --accent: 201, 149, 72; }
+
+.haze {
+  position: absolute;
+  top: 20px;
+  right: -120px;
+  width: min(100%, 1100px);
+  height: 850px;
+  background: radial-gradient(ellipse at 65% 35%, rgba(var(--accent), 0.075), transparent 60%);
+}
+
+.canvas {
+  position: absolute;
+  top: 60px;
+  right: -35px;
+  width: min(100%, 1200px);
+  height: auto;
+  color: rgb(var(--accent));
+  stroke: currentColor;
+  stroke-width: 0.8;
+  mask-image: linear-gradient(to right, transparent 12%, black 53%),
+    linear-gradient(to bottom, black 55%, transparent 95%);
+  mask-composite: intersect;
+}
+
+.grid { opacity: 0.09; }
+.frames { opacity: 0.23; }
+.paths { opacity: 0.34; }
+.ring { opacity: 0.22; }
+.point { fill: #f4d398; stroke: none; opacity: 0.65; }
+.nodes text, .fragments text {
+  fill: currentColor;
+  stroke: none;
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 1.4px;
+}
+.nodes text { opacity: 0.4; }
+.fragments { opacity: 0.2; }
+
+@media (max-width: 767px) {
+  .canvas { top: 140px; right: -210px; width: 730px; opacity: 0.8; }
+  .haze { top: 120px; width: 650px; height: 700px; opacity: 0.7; }
+  .grid, .fragments { display: none; }
+  .frames { opacity: 0.16; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene [data-scene-depth] { transform: none !important; }
+}

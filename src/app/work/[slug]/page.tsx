@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import ProjectPreview from "@/components/ProjectPreview";
+import ProjectVisualScene from "@/components/ProjectVisualScene";
 import { projects } from "@/data/projects";
 
 type ProjectPageProps = {
@@ -30,8 +31,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
+    <main className="relative isolate min-h-screen bg-black text-white">
+      <ProjectVisualScene variant={project.visualVariant} />
+      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
           href="/#work"
           className="text-sm text-zinc-400 transition hover:text-white"
@@ -42,7 +44,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <span className="text-sm text-zinc-600">Project</span>
       </header>
 
-      <article className="mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
+      <article className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
         <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
           {project.category}
         </p>

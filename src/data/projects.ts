@@ -6,11 +6,13 @@ export type Project = {
   slug: string;
   gradient: string;
   previewType: "portfolio" | "freelance";
+  visualVariant: "components" | "windows";
 };
 
 export const projects: Project[] = [
   {
     previewType: "portfolio",
+    visualVariant: "components",
     title: "Personal Website V2",
     slug: "personal-website",
     category: "Engineering · Design",
@@ -22,6 +24,7 @@ export const projects: Project[] = [
   },
   {
     previewType: "freelance",
+    visualVariant: "windows",
     title: "Freelance Web Archive",
     slug: "freelance-web-archive",
     category: "Web Development · Client Work",
