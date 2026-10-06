@@ -1,8 +1,9 @@
 "use client";
 
 import { useState } from "react";
+import type { Dictionary } from "@/data/locales/en";
 
-export default function HeroCard() {
+export default function HeroCard({ copy }: { copy: Dictionary["hero"] }) {
   const [rotation, setRotation] = useState({
     x: 0,
     y: 0,
@@ -45,7 +46,7 @@ export default function HeroCard() {
     >
       <div className="flex items-center justify-between">
         <span className="text-sm text-zinc-500">
-          Selected Focus
+          {copy.selected}
         </span>
 
         <span className="h-2 w-2 rounded-full bg-emerald-400" />
@@ -53,20 +54,20 @@ export default function HeroCard() {
 
       <div>
         <p className="text-sm text-zinc-500">
-          Currently building
+          {copy.building}
         </p>
 
         <p className="mt-3 text-3xl font-medium tracking-tight">
-          Software.
+          {copy.software}
           <br />
-          AI.
+          {copy.ai}
           <br />
-          Products.
+          {copy.products}
         </p>
       </div>
 
       <p className="text-sm text-zinc-500">
-        Germany · 2026
+        {copy.location}
       </p>
     </div>
   );

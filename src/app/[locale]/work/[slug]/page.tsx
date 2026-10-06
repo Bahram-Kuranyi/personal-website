@@ -4,12 +4,20 @@ import { notFound } from "next/navigation";
 import ProjectPreview from "@/components/ProjectPreview";
 import ProjectVisualScene from "@/components/ProjectVisualScene";
 import { projects } from "@/data/projects";
+import { getProjects } from "@/data/localized";
+import { getDictionary } from "@/data/locales";
+import { requireLocale } from "@/lib/locale";
+import { routes } from "@/lib/site";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 type ProjectPageProps = {
   params: Promise<{
     slug: string;
+    locale: string;
   }>;
 };
+
+export const dynamicParams = false;
 
 export function generateStaticParams() {
   return projects.map((project) => ({
@@ -18,7 +26,10 @@ export function generateStaticParams() {
 }
 
 export default async function ProjectPage({ params }: ProjectPageProps) {
-  const { slug } = await params;
+  const { slug, locale: code } = await params;
+  const locale = requireLocale(code);
+  const t = getDictionary(locale);
+  const projects = getProjects(locale);
 
   const projectIndex = projects.findIndex((project) => project.slug === slug);
 
@@ -35,13 +46,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <ProjectVisualScene variant={project.visualVariant} />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
-          href="/#work"
+          href={routes.work(locale)}
           className="text-sm text-zinc-400 transition hover:text-white"
         >
-          ← Back to work
+          ← {t.detail.back}
         </Link>
 
-        <span className="text-sm text-zinc-600">Project</span>
+        <LanguageSwitcher locale={locale} path={`/work/${project.slug}`} />
       </header>
 
       <article className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
@@ -69,16 +80,16 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         <div className="mt-20 overflow-hidden rounded-[2rem] border border-white/10">
-          <ProjectPreview type={project.previewType} />
+          <ProjectPreview type={project.previewType} locale={locale} />
         </div>
         <div className="mt-24 flex flex-col justify-between gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-end">
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
-              Next project
+              {t.detail.next}
             </p>
 
             <Link
-              href={`/work/${nextProject.slug}`}
+              href={routes.project(locale, nextProject.slug)}
               className="mt-3 block text-3xl font-medium tracking-tight transition hover:text-zinc-400 md:text-4xl"
             >
               {nextProject.title} →
@@ -86,10 +97,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
 
           <Link
-            href="/work"
+            href={routes.work(locale)}
             className="text-sm text-zinc-500 transition hover:text-white"
           >
-            View all work
+            {t.work.all}
           </Link>
         </div>
       </article>

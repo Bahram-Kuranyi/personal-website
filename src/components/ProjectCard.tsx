@@ -1,17 +1,20 @@
 import Link from "next/link";
+import { routes, type Locale } from "@/lib/site";
+import { getDictionary } from "@/data/locales";
 import type { Project } from "@/data/projects";
 import ProjectPreview from "@/components/ProjectPreview";
 
 type ProjectCardProps = {
   project: Project;
+  locale: Locale;
 };
 
-export default function ProjectCard({ project }: ProjectCardProps) {
+export default function ProjectCard({ project, locale }: ProjectCardProps) {
   return (
-    <Link href={`/work/${project.slug}`} className="group block">
+    <Link href={routes.project(locale, project.slug)} className="group block">
       <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-1 hover:border-white/20">
         <div className="aspect-[16/10] overflow-hidden">
-          <ProjectPreview type={project.previewType} />
+          <ProjectPreview type={project.previewType} locale={locale} />
         </div>
 
         <div className="p-6 sm:p-8">
@@ -39,7 +42,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
 
           <p className="mt-8 text-sm text-white transition-transform duration-300 group-hover:translate-x-1">
-            View project →
+            {getDictionary(locale).work.project} →
           </p>
         </div>
       </article>

@@ -1,8 +1,13 @@
+import { getDictionary } from "@/data/locales";
+import type { Locale } from "@/lib/site";
+
 type ProjectPreviewProps = {
+  locale: Locale;
   type: "portfolio" | "freelance";
 };
 
-export default function ProjectPreview({ type }: ProjectPreviewProps) {
+export default function ProjectPreview({ type, locale }: ProjectPreviewProps) {
+  const t = getDictionary(locale);
   if (type === "portfolio") {
     return (
       <div className="relative flex h-full min-h-[320px] items-center justify-center overflow-hidden bg-zinc-950 p-8">
@@ -16,12 +21,12 @@ export default function ProjectPreview({ type }: ProjectPreviewProps) {
               <span className="h-2 w-2 rounded-full bg-white/20" />
             </div>
 
-            <span className="text-[10px] text-zinc-600">bahram.dev</span>
+            <span className="text-[10px] text-zinc-600">Bahram Kuranyi</span>
           </div>
 
           <div className="px-7 py-10">
             <p className="text-[10px] uppercase tracking-[0.25em] text-zinc-500">
-              Software Engineer
+              {t.preview.role}
             </p>
 
             <h4 className="mt-4 text-3xl font-semibold leading-none tracking-tight">
@@ -32,11 +37,11 @@ export default function ProjectPreview({ type }: ProjectPreviewProps) {
 
             <div className="mt-8 flex gap-2">
               <span className="rounded-full bg-white px-3 py-1 text-[9px] font-medium text-black">
-                Work
+                {t.nav.work}
               </span>
 
               <span className="rounded-full border border-white/10 px-3 py-1 text-[9px] text-zinc-400">
-                Experience
+                {t.experience.label}
               </span>
             </div>
           </div>
@@ -51,7 +56,7 @@ export default function ProjectPreview({ type }: ProjectPreviewProps) {
 
       <div className="relative translate-y-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-lg">
         <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">
-          Client
+          {t.preview.client}
         </p>
 
         <div className="mt-12 space-y-3">
@@ -63,7 +68,7 @@ export default function ProjectPreview({ type }: ProjectPreviewProps) {
 
       <div className="relative -translate-y-6 rounded-2xl border border-white/10 bg-white/[0.04] p-5 backdrop-blur-lg">
         <p className="text-[10px] uppercase tracking-[0.2em] text-zinc-500">
-          Website
+          {t.preview.website}
         </p>
 
         <div className="mt-10">

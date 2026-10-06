@@ -4,10 +4,10 @@ export type Experience = {
   period: string;
   location: string;
   description: string;
-  technologies: string[];
+  technologies: readonly string[];
 };
 
-export const experiences: Experience[] = [
+export const experiences = [
   {
     company: "Luxoft",
     role: "Software Engineer",
@@ -53,4 +53,4 @@ export const experiences: Experience[] = [
       "UI",
     ],
   },
-];
+] as const satisfies readonly Experience[];

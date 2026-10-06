@@ -2,14 +2,14 @@ export type Project = {
   title: string;
   category: string;
   description: string;
-  tech: string[];
+  tech: readonly string[];
   slug: string;
   gradient: string;
   previewType: "portfolio" | "freelance";
   visualVariant: "components" | "windows";
 };
 
-export const projects: Project[] = [
+export const projects = [
   {
     previewType: "portfolio",
     visualVariant: "components",
@@ -34,4 +34,4 @@ export const projects: Project[] = [
     gradient:
       "radial-gradient(circle at 70% 25%, rgba(168,85,247,0.6), transparent 35%), radial-gradient(circle at 30% 75%, rgba(244,63,94,0.4), transparent 35%), #09090b",
   },
-];
+] as const satisfies readonly Project[];
