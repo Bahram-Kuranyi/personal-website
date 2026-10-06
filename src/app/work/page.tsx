@@ -1,11 +1,13 @@
 import Link from "next/link";
+import WorkConstellation from "@/components/WorkConstellation";
 
 import { projects } from "@/data/projects";
 
 export default function WorkPage() {
   return (
-    <main className="min-h-screen bg-black text-white">
-      <header className="mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
+    <main className="relative isolate min-h-screen bg-black text-white">
+      <WorkConstellation />
+      <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
           href="/"
           className="text-sm text-zinc-400 transition hover:text-white"
@@ -16,7 +18,7 @@ export default function WorkPage() {
         <span className="text-sm text-zinc-600">Selected Work</span>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
+      <section className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
         <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
           Portfolio
         </p>

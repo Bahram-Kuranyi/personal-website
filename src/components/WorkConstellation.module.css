@@ -1,0 +1,84 @@
+.scene {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+
+.atmosphere {
+  position: absolute;
+  top: 40px;
+  right: -120px;
+  width: min(90vw, 1100px);
+  height: 800px;
+  background: radial-gradient(ellipse at 65% 30%, #36365a24, transparent 60%);
+}
+
+.canvas {
+  position: absolute;
+  top: 80px;
+  right: -45px;
+  width: min(95%, 1150px);
+  height: auto;
+  /* Leave the title side quiet, and let the lower scene dissolve into black. */
+  mask-image: linear-gradient(to right, transparent, black 35%),
+    linear-gradient(to bottom, black 55%, transparent 92%);
+  mask-composite: intersect;
+}
+
+.scaffolding {
+  stroke: #818caf;
+  stroke-width: 0.7;
+  opacity: 0.16;
+}
+
+.connections {
+  stroke: #9cabc8;
+  stroke-width: 0.9;
+  opacity: 0.26;
+}
+
+.halo {
+  stroke: #a5b4fc;
+  stroke-width: 0.7;
+  opacity: 0.2;
+}
+
+.point {
+  fill: #bac9e4;
+  opacity: 0.55;
+}
+
+.label,
+.details text {
+  font-family: var(--font-geist-mono), monospace;
+  font-size: 10px;
+  letter-spacing: 1.3px;
+  fill: #a5b4ca;
+  stroke: none;
+}
+
+.label { opacity: 0.36; }
+.brackets { stroke: #96a9cc; stroke-width: 0.8; opacity: 0.3; }
+.details { stroke: #9eacc6; stroke-width: 0.65; opacity: 0.2; }
+
+@media (prefers-reduced-motion: reduce) {
+  .scene [data-scene-depth] { transform: none !important; }
+}
+
+@media (max-width: 767px) {
+  .canvas {
+    top: 150px;
+    right: -190px;
+    width: 680px;
+    opacity: 0.8;
+    mask-image: linear-gradient(to right, transparent 15%, black 48%),
+      linear-gradient(to bottom, black 55%, transparent 90%);
+  }
+
+  .atmosphere { top: 180px; width: 650px; height: 600px; opacity: 0.65; }
+  .details { display: none; }
+  .scaffolding { opacity: 0.1; }
+}
