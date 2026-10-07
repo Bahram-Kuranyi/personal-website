@@ -29,11 +29,11 @@ export default function ProjectPreview({ type, locale }: ProjectPreviewProps) {
               {t.preview.role}
             </p>
 
-            <h4 className="mt-4 text-3xl font-semibold leading-none tracking-tight">
+            <p className="mt-4 text-3xl font-semibold leading-none tracking-tight">
               Bahram
               <br />
               Kuranyi
-            </h4>
+            </p>
 
             <div className="mt-8 flex gap-2">
               <span className="rounded-full bg-white px-3 py-1 text-[9px] font-medium text-black">

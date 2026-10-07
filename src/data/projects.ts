@@ -1,3 +1,9 @@
+export type CaseStudySection = {
+  id: "overview" | "role" | "challenge" | "approach" | "decisions" | "features" | "outcome";
+  body?: string;
+  items?: readonly string[];
+};
+
 export type Project = {
   title: string;
   category: string;
@@ -7,6 +13,8 @@ export type Project = {
   gradient: string;
   previewType: "portfolio" | "freelance";
   visualVariant: "components" | "windows";
+  caseStudy?: readonly CaseStudySection[];
+  sourceUrl?: string;
 };
 
 export const projects = [
@@ -14,10 +22,11 @@ export const projects = [
     previewType: "portfolio",
     visualVariant: "components",
     title: "Personal Website V2",
+    sourceUrl: "https://github.com/Bahram-Kuranyi/personal-website",
     slug: "personal-website",
     category: "Engineering · Design",
     description:
-      "A bilingual, interaction-led portfolio designed and engineered from scratch.",
+      "A bilingual portfolio combining reusable React components with a custom scroll-reactive visual system.",
     tech: ["Next.js", "TypeScript", "Tailwind"],
     gradient:
       "radial-gradient(circle at 30% 30%, rgba(99,102,241,0.75), transparent 35%), radial-gradient(circle at 75% 65%, rgba(14,165,233,0.55), transparent 35%), #09090b",

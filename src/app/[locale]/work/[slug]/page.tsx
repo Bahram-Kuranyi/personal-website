@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 
 import ProjectPreview from "@/components/ProjectPreview";
 import ProjectVisualScene from "@/components/ProjectVisualScene";
+import CaseStudy from "@/components/CaseStudy";
 import { projects } from "@/data/projects";
 import { getProjects } from "@/data/localized";
 import { getDictionary } from "@/data/locales";
@@ -88,9 +89,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           ))}
         </div>
 
-        <div className="mt-20 overflow-hidden rounded-[2rem] border border-white/10">
-          <ProjectPreview type={project.previewType} locale={locale} />
-        </div>
+        {project.sourceUrl && <a href={project.sourceUrl} className="mt-8 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.source} ↗</a>}
+        <figure className="mt-20">
+          <div className="overflow-hidden rounded-[2rem] border border-white/10">
+            <ProjectPreview type={project.previewType} locale={locale} />
+          </div>
+          <figcaption className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400">{t.detail.preview} · {t.detail.previewNote}</figcaption>
+        </figure>
+        <CaseStudy sections={project.caseStudy} locale={locale} />
         <div className="mt-24 flex flex-col justify-between gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-end">
           <div>
             <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">

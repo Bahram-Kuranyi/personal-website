@@ -151,14 +151,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         id="about"
         className="mx-auto max-w-7xl border-t border-white/10 px-6 py-28 md:px-12 lg:px-16 lg:py-40"
       >
-        <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
+        <h2 className="text-xs uppercase tracking-[0.28em] text-zinc-500">
           {t.nav.about}
-        </p>
+        </h2>
 
         <p className="mt-8 max-w-4xl text-3xl leading-tight tracking-tight text-zinc-200 md:text-5xl">
           {t.about.first}
           <span className="text-zinc-600"> {t.about.second}</span>
         </p>
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">{t.about.body}</p>
       </section>
 
       {/* CONTACT */}

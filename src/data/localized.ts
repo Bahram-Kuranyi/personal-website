@@ -1,11 +1,12 @@
 import { projects, type Project } from "./projects";
 import { experiences, type Experience } from "./experience";
 import type { Locale } from "@/lib/site";
+import { caseStudies } from "./caseStudies";
 
 const germanProjects: Record<(typeof projects)[number]["slug"], Pick<Project, "category" | "description" | "tech">> = {
   "personal-website": {
     category: "Entwicklung · Design",
-    description: "Ein zweisprachiges, interaktives Portfolio — von Grund auf gestaltet und entwickelt.",
+    description: "Ein zweisprachiges Portfolio mit wiederverwendbaren React-Komponenten und einem individuellen, scrollreaktiven visuellen System.",
     tech: ["Next.js", "TypeScript", "Tailwind"],
   },
   "freelance-web-archive": {
@@ -34,7 +35,11 @@ const germanExperience: Record<(typeof experiences)[number]["company"], Pick<Exp
 };
 
 export function getProjects(locale: Locale): Project[] {
-  return projects.map((project) => locale === "de" ? { ...project, ...germanProjects[project.slug] } : project);
+  return projects.map((project) => ({
+    ...project,
+    ...(locale === "de" ? germanProjects[project.slug] : {}),
+    caseStudy: caseStudies[locale][project.slug],
+  }));
 }
 
 export function getExperiences(locale: Locale): Experience[] {
