@@ -11,6 +11,7 @@ import { requireLocale } from "@/lib/locale";
 import { routes, site } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
+import SiteFooter from "@/components/SiteFooter";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -52,12 +53,13 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const nextProject = projects[(projectIndex + 1) % projects.length];
 
   return (
-    <main className="relative isolate min-h-screen bg-black text-white">
+    <>
+    <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
       <ProjectVisualScene variant={project.visualVariant} />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
           href={routes.work(locale)}
-          className="text-sm text-zinc-400 transition hover:text-white"
+          className="inline-flex min-h-11 items-center text-sm text-zinc-400 transition hover:text-white"
         >
           ← {t.detail.back}
         </Link>
@@ -120,5 +122,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </article>
     </main>
+    <SiteFooter locale={locale} path={`/work/${project.slug}`} />
+    </>
   );
 }

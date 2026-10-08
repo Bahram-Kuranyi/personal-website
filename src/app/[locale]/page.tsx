@@ -11,6 +11,8 @@ import { requireLocale } from "@/lib/locale";
 import { routes, site, navigation } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
+import SiteFooter from "@/components/SiteFooter";
+import ProfileLinks from "@/components/ProfileLinks";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
@@ -24,27 +26,25 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   const projects = getProjects(locale);
   const experiences = getExperiences(locale);
   return (
-    <main className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
+    <>
+    <main id="main-content" tabIndex={-1} className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
       <SoftwareBackground id="hero-software" />
       {/* HERO */}
       <section className="relative isolate min-h-screen overflow-hidden">
-        <div className="hero-orb hero-orb-one" />
-        <div className="hero-orb hero-orb-two" />
+        <div className="hero-orb hero-orb-one" aria-hidden="true" />
+        <div className="hero-orb hero-orb-two" aria-hidden="true" />
 
         <header className="absolute left-0 top-0 z-20 w-full">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-3 px-6 py-6 md:px-12 lg:px-16">
-            <Link href={routes.home(locale)} aria-label={`${site.name} — ${t.home}`} className="text-sm font-medium tracking-tight">BK</Link>
-
-            <div className="flex flex-wrap items-center gap-3 sm:gap-6">
-              <nav className="flex gap-3 text-sm text-zinc-400 sm:gap-6">
-                {navigation.map((section) => <a key={section} href={`#${section}`} className="transition hover:text-white">{t.nav[section]}</a>)}
+          <div className="mx-auto grid max-w-7xl grid-cols-[1fr_auto] items-center gap-x-6 gap-y-2 px-6 py-6 sm:grid-cols-[1fr_auto_auto] md:px-12 lg:px-16">
+            <Link href={routes.home(locale)} aria-label={`${site.name} — ${t.home}`} className="inline-flex min-h-11 w-fit items-center text-sm font-medium tracking-tight">BK</Link>
+              <nav aria-label={t.navigation.main} className="col-span-2 row-start-2 flex gap-6 text-sm text-zinc-400 sm:col-span-1 sm:col-start-2 sm:row-start-1">
+                {navigation.map((section) => <a key={section} href={`#${section}`} className="inline-flex min-h-11 items-center transition hover:text-white">{t.nav[section]}</a>)}
               </nav>
               <LanguageSwitcher locale={locale} />
-            </div>
           </div>
         </header>
 
-        <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center gap-16 px-6 pt-24 md:px-12 lg:grid-cols-2 lg:px-16">
+        <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center gap-16 px-6 pb-28 pt-44 sm:pt-28 md:px-12 lg:grid-cols-2 lg:px-16">
           <div>
             <p className="mb-6 text-sm uppercase tracking-[0.28em] text-zinc-500">
               {t.hero.focus}
@@ -62,24 +62,24 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
               <a
-                href={site.cv}
-                download
+                href="#work"
                 className="rounded-full bg-white px-6 py-3 text-sm font-medium text-black transition hover:bg-zinc-200"
               >
-                {t.hero.cv}
+                {t.hero.explore}
               </a>
 
               <a
-                href="#work"
+                href={site.cv}
+                download
                 className="rounded-full border border-white/15 px-6 py-3 text-sm text-zinc-300 transition hover:border-white/30 hover:text-white"
               >
-                {t.hero.explore}
+                {t.hero.cv}
               </a>
             </div>
           </div>
 
           <div className="relative hidden lg:block">
-            <HeroCard copy={t.hero} />
+            <HeroCard copy={t.hero} location={site.location[locale]} />
           </div>
         </div>
 
@@ -176,12 +176,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           <br />
           {t.contact.second}
         </h2>
-        <div className="mt-10 flex flex-wrap gap-6 text-sm text-zinc-400">
-          <a href={`mailto:${site.email}`} className="transition hover:text-white">{t.contact.email}</a>
-          <a href={site.github} className="transition hover:text-white">GitHub</a>
-          <a href={site.linkedin} className="transition hover:text-white">LinkedIn</a>
-        </div>
+        <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">{t.contact.body}</p>
+        <a href={`mailto:${site.email}`} aria-label={`${t.contact.email}: ${site.email}`} className="my-6 inline-flex min-h-11 items-center break-all text-xl text-zinc-200 underline underline-offset-8 hover:text-white">{site.email}</a>
+        <ProfileLinks locale={locale} />
       </section>
     </main>
+    <SiteFooter locale={locale} />
+    </>
   );
 }

@@ -3,13 +3,14 @@
 import { useState } from "react";
 import type { Dictionary } from "@/data/locales/en";
 
-export default function HeroCard({ copy }: { copy: Dictionary["hero"] }) {
+export default function HeroCard({ copy, location }: { copy: Dictionary["hero"]; location: string }) {
   const [rotation, setRotation] = useState({
     x: 0,
     y: 0,
   });
 
   function handleMouseMove(event: React.MouseEvent<HTMLDivElement>) {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
     const card = event.currentTarget;
     const rect = card.getBoundingClientRect();
 
@@ -67,7 +68,7 @@ export default function HeroCard({ copy }: { copy: Dictionary["hero"] }) {
       </div>
 
       <p className="text-sm text-zinc-500">
-        {copy.location}
+        {location}
       </p>
     </div>
   );

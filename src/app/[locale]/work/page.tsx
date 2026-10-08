@@ -7,6 +7,7 @@ import { requireLocale } from "@/lib/locale";
 import { routes, site } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
+import SiteFooter from "@/components/SiteFooter";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
@@ -19,12 +20,13 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
   const t = getDictionary(locale);
   const projects = getProjects(locale);
   return (
-    <main className="relative isolate min-h-screen bg-black text-white">
+    <>
+    <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
       <WorkConstellation />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
           href={routes.home(locale)}
-          className="text-sm text-zinc-400 transition hover:text-white"
+          className="inline-flex min-h-11 items-center text-sm text-zinc-400 transition hover:text-white"
         >
           ← Bahram Kuranyi
         </Link>
@@ -70,5 +72,7 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
     </main>
+    <SiteFooter locale={locale} path="/work" />
+    </>
   );
 }

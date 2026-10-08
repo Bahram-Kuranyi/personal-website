@@ -3,13 +3,25 @@ export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 export const isLocale = (value: string): value is Locale => locales.some((locale) => locale === value);
 
+type ProfessionalProfile = {
+  name: string;
+  title: string;
+  location: Record<Locale, string>;
+  cv: `/${string}`;
+  email: string;
+  linkedin: `https://${string}`;
+  github: `https://${string}`;
+};
+
 export const site = {
   name: "Bahram Kuranyi",
+  title: "Software Engineer",
+  location: { en: "Germany", de: "Deutschland" },
   cv: "/Bahram-Kuranyi-CV.pdf",
   email: "Bahramkuranyi@gmail.com",
   linkedin: "https://www.linkedin.com/in/bahramkuranyi/",
   github: "https://github.com/Bahram-Kuranyi",
-} as const;
+} as const satisfies ProfessionalProfile;
 
 export const routes = {
   home: (locale: Locale) => `/${locale}`,

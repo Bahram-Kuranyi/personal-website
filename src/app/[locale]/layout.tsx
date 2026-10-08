@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import { locales, siteUrl, isIndexable } from "@/lib/site";
 import { requireLocale } from "@/lib/locale";
+import { getDictionary } from "@/data/locales";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,7 +32,10 @@ export default async function RootLayout({ children, params }: { children: React
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <a href="#main-content" className="skip-link">{getDictionary(locale).navigation.skip}</a>
+        {children}
+      </body>
     </html>
   );
 }
