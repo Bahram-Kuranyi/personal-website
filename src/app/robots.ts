@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { isIndexable, siteUrl } from "@/lib/site";
+import { isIndexable, siteUrl } from "@/lib/site-origin";
 
 export default function robots(): MetadataRoute.Robots {
   return {

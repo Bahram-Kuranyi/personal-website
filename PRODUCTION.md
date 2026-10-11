@@ -32,7 +32,7 @@ The approved homepage hand composition and morph are unchanged. Work and project
 
 Copy `.env.example` to `.env.local` for local configuration. Set `SITE_URL` to the final public HTTPS origin in the deployment environment **before building**, then rebuild. Use an origin only, without a subpath, query, or credentials.
 
-No production domain has been assumed. Without `SITE_URL`, the single fallback is `http://localhost:3000`, all pages use `noindex,nofollow`, and robots disallows crawling. Do not launch without configuring this value. Leave it unset for private previews.
+No production domain has been assumed. In development only, missing `SITE_URL` falls back to `http://localhost:3000` with `noindex,nofollow` and crawling disallowed. Production builds and runtime require a non-local HTTPS origin and fail clearly when it is missing or invalid. Configure the same value at build and runtime; rebuild when changing it. For local production validation, a reserved test origin such as `https://portfolio.example` can be supplied through the process environment; never deploy with that test value. Protect hosted preview deployments using the hosting provider's access controls.
 
 Metadata includes localized titles/descriptions, Open Graph basics, canonical URLs and English/German language alternates. Project metadata and the revalidated sitemap use published Sanity projects. `/robots.txt` permits crawling and advertises the sitemap only with a configured non-local origin; Studio is excluded from crawling and has noindex metadata. No fabricated last-modified dates are emitted.
 

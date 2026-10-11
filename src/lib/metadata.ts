@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { isIndexable, locales, siteUrl, type Locale } from "./site";
+import { locales, type Locale } from "./site";
+import { isIndexable, siteUrl } from "./site-origin";
 
 export function pageMetadata(locale: Locale, path: string, title: string, description: string, siteName: string): Metadata {
   const url = new URL(`/${locale}${path}`, siteUrl).href;

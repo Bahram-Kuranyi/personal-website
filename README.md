@@ -21,7 +21,7 @@ npm.cmd run build
 npm.cmd run start
 ```
 
-Configure `SITE_URL` before the production build. No final production domain has been assumed.
+Configure `SITE_URL` before the production build and keep the same value at runtime. Missing or non-HTTPS/local production origins fail explicitly. No final production domain has been assumed. Run `node --test tests/site-origin.test.mjs` to check origin validation.
 
 # Managing Website Content
 
@@ -61,7 +61,7 @@ NEXT_PUBLIC_SANITY_API_VERSION=2026-10-09
 SITE_URL=https://your-actual-domain.example
 ```
 
-`SITE_URL` above is an example: replace it with the real domain, or leave it empty for a private local preview. The three `NEXT_PUBLIC_SANITY_*` values are public configuration, not credentials. Missing essential Sanity configuration produces an explicit setup error. No `SANITY_API_READ_TOKEN` is required. Never commit `.env.local` or login tokens.
+`SITE_URL` above is an example: replace it with the real domain. It may be empty only for `npm.cmd run dev`, which uses a non-indexable localhost fallback. The three `NEXT_PUBLIC_SANITY_*` values are public configuration, not credentials, and must be provided at build and runtime. Missing essential Sanity configuration produces an explicit setup error. No `SANITY_API_READ_TOKEN` is required. Never commit `.env.local` or login tokens.
 
 In [Sanity Manage](https://www.sanity.io/manage/project/ksebxybv), add the final website origin under API → CORS origins with credentials enabled, so Studio can sign in on that domain. `http://localhost:3000` is already configured. Do not enable a wildcard origin. Host this app with the Next.js server/ISR runtime, not a static export.
 

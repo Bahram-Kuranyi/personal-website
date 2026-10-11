@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getProjects } from "@/sanity/lib/content";
-import { locales, routes, siteUrl } from "@/lib/site";
+import { locales, routes } from "@/lib/site";
+import { siteUrl } from "@/lib/site-origin";
 
 export const revalidate = 60;
 
