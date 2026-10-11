@@ -4,8 +4,9 @@ import HeroCard from "@/components/HeroCard";
 import SoftwareBackground from "@/components/SoftwareBackground";
 import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
+import FeaturedContent from "@/components/FeaturedContent";
 
-import { getFeaturedProjects, getExperiences, getSiteSettings } from "@/sanity/lib/content";
+import { getFeaturedProjects, getExperiences, getSiteSettings, getFeaturedMedia } from "@/sanity/lib/content";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
 import { routes, navigation } from "@/lib/site";
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
   const t = getDictionary(locale);
-  const [site, projects, experiences] = await Promise.all([getSiteSettings(locale), getFeaturedProjects(locale), getExperiences(locale)]);
+  const [site, projects, experiences, featuredMedia] = await Promise.all([getSiteSettings(locale), getFeaturedProjects(locale), getExperiences(locale), getFeaturedMedia(locale)]);
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
@@ -89,6 +90,8 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {t.hero.scroll}
         </a>
       </section>
+
+      <FeaturedContent media={featuredMedia} locale={locale} />
 
       {/* WORK */}
       <section

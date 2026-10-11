@@ -2,9 +2,10 @@ import "server-only";
 import { cache } from "react";
 import type { Locale } from "@/lib/site";
 import { client } from "./client";
-import { cvQuery, experienceQuery, projectsQuery, settingsQuery } from "./queries";
+import { cvQuery, experienceQuery, featuredMediaQuery, projectsQuery, settingsQuery } from "./queries";
 import { assetUrl, experienceFromDocument, projectFromDocument, text, webUrl } from "./normalize";
-import type { RawExperience, RawProject, RawSettings } from "./types";
+import type { RawExperience, RawFeaturedMedia, RawProject, RawSettings } from "./types";
+import { resolveFeaturedMedia } from "./featuredMedia";
 
 export const fallbackCv = "/Bahram-Kuranyi-CV.pdf";
 const options = { next: { revalidate: 60 }, cache: "force-cache" as const };
@@ -37,3 +38,13 @@ export const getProjects = cache(async (locale: Locale) => (await getProjectDocu
 export const getFeaturedProjects = cache(async (locale: Locale) => (await getProjectDocuments()).filter((project) => project.featured).map((project) => projectFromDocument(project, locale)));
 export const getProject = cache(async (locale: Locale, slug: string) => (await getProjects(locale)).find((project) => project.slug === slug));
 export const getExperiences = cache(async (locale: Locale) => (await client.fetch<RawExperience[]>(experienceQuery, {}, options)).map((experience) => experienceFromDocument(experience, locale)));
+
+export const getFeaturedMedia = cache(async (locale: Locale) => {
+  try {
+    const raw = await client.fetch<RawFeaturedMedia | null>(featuredMediaQuery, {}, options);
+    return resolveFeaturedMedia(raw, locale);
+  } catch {
+    console.warn("Featured Media unavailable; optional section omitted.");
+    return null;
+  }
+});
