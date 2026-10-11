@@ -1,0 +1,347 @@
+[
+  {
+    "_id": "siteSettings",
+    "_type": "siteSettings",
+    "name": "Bahram Kuranyi",
+    "title": {
+      "en": "Software Engineer",
+      "de": "Software Engineer"
+    },
+    "location": {
+      "en": "Germany",
+      "de": "Deutschland"
+    },
+    "github": "https://github.com/Bahram-Kuranyi",
+    "linkedin": "https://www.linkedin.com/in/bahramkuranyi/",
+    "email": "Bahramkuranyi@gmail.com",
+    "heroLabel": {
+      "en": "Software Engineer · AI & Modern Web",
+      "de": "Software Engineer · KI & Modernes Web"
+    },
+    "heroText": {
+      "en": "I build web applications and reusable interfaces, with a focus on AI and modern software.",
+      "de": "Ich entwickle Webanwendungen und wiederverwendbare Oberflächen — mit Fokus auf KI und moderne Software."
+    },
+    "aboutLead": {
+      "en": "Engineer by training.",
+      "de": "Ausgebildeter Ingenieur."
+    },
+    "aboutAccent": {
+      "en": "Builder by nature.",
+      "de": "Entwickler aus Leidenschaft."
+    },
+    "about": {
+      "en": "My foundation is in computer engineering. I work across frontend and backend systems, with an interest in AI and a focus on turning ideas into useful digital products.",
+      "de": "Meine Grundlage ist ein Studium der Computertechnik. Ich arbeite an Frontend- und Backend-Systemen, interessiere mich für KI und entwickle aus Ideen nützliche digitale Produkte."
+    },
+    "contactLead": {
+      "en": "Let's build",
+      "de": "Gemeinsam etwas"
+    },
+    "contactAccent": {
+      "en": "something good.",
+      "de": "Gutes entwickeln."
+    },
+    "contactText": {
+      "en": "For project conversations or software engineering opportunities, get in touch.",
+      "de": "Für einen Austausch über Projekte oder Aufgaben in der Softwareentwicklung freue ich mich auf eine Nachricht."
+    },
+    "focusLabel": {
+      "en": "Selected Focus",
+      "de": "Mein Fokus"
+    },
+    "focusEyebrow": {
+      "en": "Currently building",
+      "de": "Daran arbeite ich"
+    },
+    "focusHeadline": {
+      "en": "Software.\nAI.\nProducts.",
+      "de": "Software.\nKI.\nProdukte."
+    },
+    "focusSecondary": {
+      "en": "Germany",
+      "de": "Deutschland"
+    }
+  },
+  {
+    "_id": "project-personal-website",
+    "_type": "project",
+    "title": "Personal Website V2",
+    "slug": {
+      "_type": "slug",
+      "current": "personal-website"
+    },
+    "featured": true,
+    "sortOrder": 1,
+    "category": {
+      "en": "Engineering · Design",
+      "de": "Entwicklung · Design"
+    },
+    "description": {
+      "en": "A bilingual portfolio combining reusable React components with a custom scroll-reactive visual system.",
+      "de": "Ein zweisprachiges Portfolio mit wiederverwendbaren React-Komponenten und einem individuellen, scrollreaktiven visuellen System."
+    },
+    "tech": {
+      "en": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind"
+      ],
+      "de": [
+        "Next.js",
+        "TypeScript",
+        "Tailwind"
+      ]
+    },
+    "previewType": "portfolio",
+    "visualVariant": "components",
+    "sourceUrl": "https://github.com/Bahram-Kuranyi/personal-website",
+    "overview": {
+      "en": {
+        "body": "A personal portfolio built as a small, coherent product: project stories, professional experience and a visual identity that carries across pages and languages."
+      },
+      "de": {
+        "body": "Ein persönliches Portfolio als zusammenhängendes digitales Produkt: Projekte, berufliche Erfahrung und eine visuelle Identität, die über Seiten und Sprachen hinweg funktioniert."
+      }
+    },
+    "role": {
+      "en": {
+        "body": "Design and software engineering — from the page compositions and reusable UI to routing, localization and the custom visual system."
+      },
+      "de": {
+        "body": "Design und Softwareentwicklung — vom Seitenaufbau und wiederverwendbaren UI bis zu Routing, Lokalisierung und dem individuellen visuellen System."
+      }
+    },
+    "challenge": {
+      "en": {
+        "body": "Give the portfolio a distinctive identity while keeping the content readable, navigation predictable and motion considerate of different devices and accessibility preferences."
+      },
+      "de": {
+        "body": "Dem Portfolio einen eigenen Charakter geben und dabei Inhalte gut lesbar, die Navigation nachvollziehbar und Bewegungen für verschiedene Geräte und Barrierefreiheitseinstellungen geeignet halten."
+      }
+    },
+    "approach": {
+      "en": {
+        "body": "Separate content, page structure and decorative scenes. Shared components present the projects; typed dictionaries supply English and German copy; lightweight SVG layers add depth without taking over the interface."
+      },
+      "de": {
+        "body": "Inhalte, Seitenstruktur und dekorative Szenen sind getrennt. Gemeinsame Komponenten präsentieren die Projekte, typisierte Wörterbücher liefern deutsche und englische Texte. Leichte SVG-Ebenen erzeugen Tiefe, ohne die Inhalte zu überlagern."
+      }
+    },
+    "decisions": {
+      "en": {
+        "items": [
+          "Next.js App Router and Server Components keep the content statically rendered, with small client boundaries for interaction.",
+          "TypeScript project data drives detail routes, language variants and metadata without duplicated page templates.",
+          "SVG and transform-based scroll updates use requestAnimationFrame, cached geometry and reduced-motion support instead of an animation library.",
+          "Canonical URLs, language alternates, sitemap and robots configuration prepare both languages for deployment."
+        ]
+      },
+      "de": {
+        "items": [
+          "Next.js App Router und Server Components ermöglichen statisch gerenderte Inhalte. Nur die interaktiven Teile benötigen Client Components.",
+          "Typisierte Projektdaten steuern Detailseiten, Sprachvarianten und Metadaten ohne doppelte Seitenvorlagen.",
+          "SVG und scrollabhängige Transformationen nutzen requestAnimationFrame, zwischengespeicherte Geometrie und reduzierte Bewegung statt einer Animationsbibliothek.",
+          "Kanonische URLs, Sprachverweise, Sitemap und Robots-Konfiguration bereiten beide Sprachen auf die Veröffentlichung vor."
+        ]
+      }
+    },
+    "features": {
+      "en": {
+        "items": [
+          "English/German routes with page-preserving language switching.",
+          "A hand-to-system homepage morph, Work constellation and warm project-specific scenes.",
+          "Responsive layouts, keyboard navigation and downloadable CV."
+        ]
+      },
+      "de": {
+        "items": [
+          "Deutsche und englische Routen mit Sprachwechsel auf derselben Seite.",
+          "Ein Übergang von Händen zu einem Softwaresystem auf der Startseite, eine Work-Konstellation und warme Projektszenen.",
+          "Responsive Layouts, Tastaturnavigation und ein herunterladbarer Lebenslauf."
+        ]
+      }
+    },
+    "outcome": {
+      "en": {
+        "body": "The implementation brings content, routing and visual behavior into one reusable system. New projects can be added through typed data while keeping a shared page structure. This case study describes the implementation, not measured production results."
+      },
+      "de": {
+        "body": "Inhalte, Routing und visuelles Verhalten bilden ein wiederverwendbares System. Neue Projekte lassen sich über typisierte Daten ergänzen, während die Seitenstruktur gleich bleibt. Diese Fallstudie beschreibt die Umsetzung, keine gemessenen Ergebnisse im Produktivbetrieb."
+      }
+    }
+  },
+  {
+    "_id": "project-freelance-web-archive",
+    "_type": "project",
+    "title": "Freelance Web Archive",
+    "slug": {
+      "_type": "slug",
+      "current": "freelance-web-archive"
+    },
+    "featured": true,
+    "sortOrder": 2,
+    "category": {
+      "en": "Web Development · Client Work",
+      "de": "Webentwicklung · Kundenprojekte"
+    },
+    "description": {
+      "en": "Selected websites and digital experiences from earlier freelance work.",
+      "de": "Ausgewählte Websites und digitale Erlebnisse aus früheren freiberuflichen Projekten."
+    },
+    "tech": {
+      "en": [
+        "Web",
+        "UI",
+        "Client Work"
+      ],
+      "de": [
+        "Web",
+        "UI",
+        "Kundenprojekte"
+      ]
+    },
+    "previewType": "freelance",
+    "visualVariant": "windows",
+    "overview": {
+      "en": {
+        "body": "A collection of earlier freelance website and interface work. The focus is on turning client needs into usable web experiences."
+      },
+      "de": {
+        "body": "Eine Sammlung früherer freiberuflicher Website- und Oberflächenprojekte. Im Mittelpunkt steht die Umsetzung von Kundenanforderungen in nutzbare Webangebote."
+      }
+    },
+    "role": {
+      "en": {
+        "body": "Web design and development, covering the path from initial concept through implementation."
+      },
+      "de": {
+        "body": "Webdesign und Entwicklung — vom ersten Konzept bis zur Umsetzung."
+      }
+    },
+    "approach": {
+      "en": {
+        "body": "The existing experience record covers website delivery, frontend interfaces and WordPress work. This archive brings that work into the same portfolio structure as newer engineering projects."
+      },
+      "de": {
+        "body": "Die vorhandene Berufserfahrung umfasst Websites, Frontend-Oberflächen und WordPress-Projekte. Das Archiv präsentiert diese Arbeit in derselben Portfoliostruktur wie die neueren Entwicklungsprojekte."
+      }
+    }
+  },
+  {
+    "_id": "experience-1",
+    "_type": "experience",
+    "company": {
+      "en": "Luxoft",
+      "de": "Luxoft"
+    },
+    "role": {
+      "en": "Software Engineer",
+      "de": "Software Engineer"
+    },
+    "period": "2023 — 2025",
+    "location": {
+      "en": "Turin, Italy",
+      "de": "Turin, Italien"
+    },
+    "description": {
+      "en": "Built modern web applications, reusable interfaces, APIs and production features across frontend and backend systems.",
+      "de": "Entwicklung moderner Webanwendungen, wiederverwendbarer Oberflächen, APIs und produktiver Funktionen für Frontend- und Backend-Systeme."
+    },
+    "technologies": {
+      "en": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Docker",
+        "REST APIs"
+      ],
+      "de": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "Docker",
+        "REST APIs"
+      ]
+    },
+    "sortOrder": 1
+  },
+  {
+    "_id": "experience-2",
+    "_type": "experience",
+    "company": {
+      "en": "Kanoon Farhangi Amoozesh",
+      "de": "Kanoon Farhangi Amoozesh"
+    },
+    "role": {
+      "en": "Front-End Engineer",
+      "de": "Front-End Engineer"
+    },
+    "period": "2018 — 2020",
+    "location": {
+      "en": "Tehran, Iran",
+      "de": "Teheran, Iran"
+    },
+    "description": {
+      "en": "Developed data-driven interfaces, dashboards and reporting experiences for large-scale educational products.",
+      "de": "Entwicklung datengetriebener Oberflächen, Dashboards und Berichtsfunktionen für umfangreiche Bildungsplattformen."
+    },
+    "technologies": {
+      "en": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Data Visualization"
+      ],
+      "de": [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Datenvisualisierung"
+      ]
+    },
+    "sortOrder": 2
+  },
+  {
+    "_id": "experience-3",
+    "_type": "experience",
+    "company": {
+      "en": "Self-Employed",
+      "de": "Selbstständig"
+    },
+    "role": {
+      "en": "Web Developer",
+      "de": "Webentwickler"
+    },
+    "period": "2017 — 2018",
+    "location": {
+      "en": "Remote",
+      "de": "Remote"
+    },
+    "description": {
+      "en": "Designed and delivered websites and digital experiences for clients, from concept through implementation.",
+      "de": "Konzeption, Gestaltung und Umsetzung von Websites und digitalen Erlebnissen für Kunden."
+    },
+    "technologies": {
+      "en": [
+        "Web Development",
+        "WordPress",
+        "Frontend",
+        "UI"
+      ],
+      "de": [
+        "Webentwicklung",
+        "WordPress",
+        "Frontend",
+        "UI"
+      ]
+    },
+    "sortOrder": 3
+  },
+  {
+    "_id": "featuredMedia",
+    "_type": "featuredMedia",
+    "enabled": false,
+    "mode": "manual"
+  }
+]

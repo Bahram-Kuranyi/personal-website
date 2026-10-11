@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { isIndexable, locales, site, siteUrl, type Locale } from "./site";
+import { isIndexable, locales, siteUrl, type Locale } from "./site";
 
-export function pageMetadata(locale: Locale, path: string, title: string, description: string): Metadata {
+export function pageMetadata(locale: Locale, path: string, title: string, description: string, siteName: string): Metadata {
   const url = new URL(`/${locale}${path}`, siteUrl).href;
   return {
     metadataBase: siteUrl,
@@ -16,7 +16,7 @@ export function pageMetadata(locale: Locale, path: string, title: string, descri
     },
     robots: { index: isIndexable, follow: isIndexable },
     openGraph: {
-      type: "website", title, description, url, siteName: site.name,
+      type: "website", title, description, url, siteName,
       locale: locale === "de" ? "de_DE" : "en_US",
       alternateLocale: locale === "de" ? "en_US" : "de_DE",
     },

@@ -1,9 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import type { Dictionary } from "@/data/locales/en";
+import Link from "next/link";
+import { routes, type Locale } from "@/lib/site";
+import type { Focus } from "@/sanity/lib/types";
 
-export default function HeroCard({ copy, location }: { copy: Dictionary["hero"]; location: string }) {
+export default function HeroCard({ focus, locale }: { focus: Focus; locale: Locale }) {
   const [rotation, setRotation] = useState({
     x: 0,
     y: 0,
@@ -47,28 +49,25 @@ export default function HeroCard({ copy, location }: { copy: Dictionary["hero"];
     >
       <div className="flex items-center justify-between">
         <span className="text-sm text-zinc-500">
-          {copy.selected}
+          {focus.label}
         </span>
 
-        <span className="h-2 w-2 rounded-full bg-emerald-400" />
+        <span aria-hidden="true" className="h-2 w-2 rounded-full bg-emerald-400" />
       </div>
 
       <div>
         <p className="text-sm text-zinc-500">
-          {copy.building}
+          {focus.eyebrow}
         </p>
 
-        <p className="mt-3 text-3xl font-medium tracking-tight">
-          {copy.software}
-          <br />
-          {copy.ai}
-          <br />
-          {copy.products}
+        <p className="mt-3 whitespace-pre-line text-3xl font-medium tracking-tight">
+          {focus.headline}
         </p>
+        {focus.project && <Link href={routes.project(locale, focus.project.slug)} className="mt-4 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4">{focus.project.title} ↗</Link>}
       </div>
 
       <p className="text-sm text-zinc-500">
-        {location}
+        {focus.secondary}
       </p>
     </div>
   );

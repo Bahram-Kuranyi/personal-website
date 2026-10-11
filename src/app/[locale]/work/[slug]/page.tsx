@@ -1,14 +1,13 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
-import ProjectPreview from "@/components/ProjectPreview";
+import ProjectMedia from "@/components/ProjectMedia";
 import ProjectVisualScene from "@/components/ProjectVisualScene";
 import CaseStudy from "@/components/CaseStudy";
-import { projects } from "@/data/projects";
-import { getProjects } from "@/data/localized";
+import { getProjects, getProject, getSiteSettings } from "@/sanity/lib/content";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
-import { routes, site } from "@/lib/site";
+import { routes } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
 import SiteFooter from "@/components/SiteFooter";
@@ -20,17 +19,19 @@ type ProjectPageProps = {
   }>;
 };
 
-export const dynamicParams = false;
+export const dynamicParams = true;
+export const revalidate = 60;
 
 export async function generateMetadata({ params }: ProjectPageProps) {
   const { slug, locale: code } = await params;
   const locale = requireLocale(code);
-  const project = getProjects(locale).find((project) => project.slug === slug);
+  const [project, site] = await Promise.all([getProject(locale, slug), getSiteSettings(locale)]);
   if (!project) notFound();
-  return pageMetadata(locale, `/work/${project.slug}`, `${project.title} — ${site.name}`, project.description);
+  return pageMetadata(locale, `/work/${project.slug}`, `${project.title} — ${site.name}`, project.description, site.name);
 }
 
-export function generateStaticParams() {
+export async function generateStaticParams() {
+  const projects = await getProjects("en");
   return projects.map((project) => ({
     slug: project.slug,
   }));
@@ -40,7 +41,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   const { slug, locale: code } = await params;
   const locale = requireLocale(code);
   const t = getDictionary(locale);
-  const projects = getProjects(locale);
+  const projects = await getProjects(locale);
 
   const projectIndex = projects.findIndex((project) => project.slug === slug);
 
@@ -92,15 +93,17 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
 
         {project.sourceUrl && <a href={project.sourceUrl} className="mt-8 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.source} ↗</a>}
+        {project.liveUrl && <a href={project.liveUrl} className="ml-6 mt-8 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.live} ↗</a>}
         <figure className="mt-20">
           <div className="overflow-hidden rounded-[2rem] border border-white/10">
-            <ProjectPreview type={project.previewType} locale={locale} />
+            <ProjectMedia project={project} locale={locale} />
           </div>
-          <figcaption className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400">{t.detail.preview} · {t.detail.previewNote}</figcaption>
+          <figcaption className="mt-4 max-w-2xl text-sm leading-6 text-zinc-400">{project.image ? project.image.alt : `${t.detail.preview} · ${t.detail.previewNote}`}</figcaption>
         </figure>
         <CaseStudy sections={project.caseStudy} locale={locale} />
+        {!!project.assets?.length && <ul className="mt-10 space-y-2">{project.assets.map((asset) => <li key={asset.url}><a href={asset.url} className="inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4">{asset.filename} ↓</a></li>)}</ul>}
         <div className="mt-24 flex flex-col justify-between gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-end">
-          <div>
+          {projects.length > 1 && <div>
             <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
               {t.detail.next}
             </p>
@@ -111,7 +114,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             >
               {nextProject.title} →
             </Link>
-          </div>
+          </div>}
 
           <Link
             href={routes.work(locale)}

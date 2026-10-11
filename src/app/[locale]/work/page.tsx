@@ -1,24 +1,28 @@
 import Link from "next/link";
 import WorkConstellation from "@/components/WorkConstellation";
+import Image from "next/image";
 
-import { getProjects } from "@/data/localized";
+import { getProjects, getSiteSettings } from "@/sanity/lib/content";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
-import { routes, site } from "@/lib/site";
+import { routes } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
 import SiteFooter from "@/components/SiteFooter";
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
   const t = getDictionary(locale);
-  return pageMetadata(locale, "/work", `${t.seo.work} — ${site.name}`, t.seo.workDescription);
+  const site = await getSiteSettings(locale);
+  return pageMetadata(locale, "/work", `${t.seo.work} — ${site.name}`, t.seo.workDescription, site.name);
 }
 
 export default async function WorkPage({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
   const t = getDictionary(locale);
-  const projects = getProjects(locale);
+  const [projects, site] = await Promise.all([getProjects(locale), getSiteSettings(locale)]);
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
@@ -28,7 +32,7 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
           href={routes.home(locale)}
           className="inline-flex min-h-11 items-center text-sm text-zinc-400 transition hover:text-white"
         >
-          ← Bahram Kuranyi
+          ← {site.name}
         </Link>
 
         <LanguageSwitcher locale={locale} path="/work" />
@@ -65,8 +69,10 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
               </p>
 
               <Link href={routes.project(locale, project.slug)} aria-label={`${t.work.project}: ${project.title}`}
-                className="mt-10 block aspect-[16/8] rounded-[2rem] border border-white/10 focus-visible:outline focus-visible:outline-2"
-                style={{ background: project.gradient }} />
+                className="relative mt-10 block aspect-[16/8] overflow-hidden rounded-[2rem] border border-white/10 focus-visible:outline focus-visible:outline-2"
+                style={{ background: project.gradient }}>
+                {project.image && <Image src={project.image.url} alt={project.image.alt} fill sizes="(min-width: 1280px) 1152px, 100vw" className="object-cover" />}
+              </Link>
             </article>
           ))}
         </div>

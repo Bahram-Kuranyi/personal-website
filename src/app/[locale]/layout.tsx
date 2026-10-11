@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
-import { locales, siteUrl, isIndexable } from "@/lib/site";
+import { locales } from "@/lib/site";
 import { requireLocale } from "@/lib/locale";
 import { getDictionary } from "@/data/locales";
 
@@ -15,15 +14,9 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: siteUrl,
-  title: "Bahram Kuranyi — Software Engineer",
-  description: "Software engineering, AI and modern web products.",
-  robots: { index: isIndexable, follow: isIndexable },
-};
-
 export function generateStaticParams() { return locales.map((locale) => ({ locale })); }
-export const dynamicParams = false;
+// Allow newly published project slugs below this layout; requireLocale still rejects unknown languages.
+export const dynamicParams = true;
 
 export default async function RootLayout({ children, params }: { children: React.ReactNode; params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);

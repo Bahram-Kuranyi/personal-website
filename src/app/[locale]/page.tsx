@@ -5,26 +5,27 @@ import SoftwareBackground from "@/components/SoftwareBackground";
 import ProjectCard from "@/components/ProjectCard";
 import ExperienceItem from "@/components/ExperienceItem";
 
-import { getProjects, getExperiences } from "@/data/localized";
+import { getFeaturedProjects, getExperiences, getSiteSettings } from "@/sanity/lib/content";
 import { getDictionary } from "@/data/locales";
 import { requireLocale } from "@/lib/locale";
-import { routes, site, navigation } from "@/lib/site";
+import { routes, navigation } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
 import SiteFooter from "@/components/SiteFooter";
 import ProfileLinks from "@/components/ProfileLinks";
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
-  const t = getDictionary(locale);
-  return pageMetadata(locale, "", `${site.name} — ${t.seo.home}`, t.seo.description);
+  const site = await getSiteSettings(locale);
+  return pageMetadata(locale, "", `${site.name} — ${site.title}`, site.heroText, site.name);
 }
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   const locale = requireLocale((await params).locale);
   const t = getDictionary(locale);
-  const projects = getProjects(locale);
-  const experiences = getExperiences(locale);
+  const [site, projects, experiences] = await Promise.all([getSiteSettings(locale), getFeaturedProjects(locale), getExperiences(locale)]);
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
@@ -47,17 +48,15 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl items-center gap-16 px-6 pb-28 pt-44 sm:pt-28 md:px-12 lg:grid-cols-2 lg:px-16">
           <div>
             <p className="mb-6 text-sm uppercase tracking-[0.28em] text-zinc-500">
-              {t.hero.focus}
+              {site.heroLabel}
             </p>
 
             <h1 className="text-6xl font-semibold leading-[0.95] tracking-[-0.04em] sm:text-7xl md:text-8xl">
-              Bahram
-              <br />
-              Kuranyi
+              {site.name.split(" ").map((part, index) => <span key={`${part}-${index}`} className="block">{part}</span>)}
             </h1>
 
             <p className="mt-10 max-w-xl text-lg leading-8 text-zinc-400 md:text-xl">
-              {t.hero.description}
+              {site.heroText}
             </p>
 
             <div className="mt-10 flex flex-wrap items-center gap-4">
@@ -79,7 +78,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           </div>
 
           <div className="relative hidden lg:block">
-            <HeroCard copy={t.hero} location={site.location[locale]} />
+            <HeroCard focus={site.focus} locale={locale} />
           </div>
         </div>
 
@@ -156,10 +155,10 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </h2>
 
         <p className="mt-8 max-w-4xl text-3xl leading-tight tracking-tight text-zinc-200 md:text-5xl">
-          {t.about.first}
-          <span className="text-zinc-600"> {t.about.second}</span>
+          {site.aboutLead}
+          <span className="text-zinc-600"> {site.aboutAccent}</span>
         </p>
-        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">{t.about.body}</p>
+        <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">{site.about}</p>
       </section>
 
       {/* CONTACT */}
@@ -172,12 +171,12 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         </p>
 
         <h2 className="mt-6 text-5xl font-medium tracking-tight md:text-7xl">
-          {t.contact.first}
+          {site.contactLead}
           <br />
-          {t.contact.second}
+          {site.contactAccent}
         </h2>
-        <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">{t.contact.body}</p>
-        <a href={`mailto:${site.email}`} aria-label={`${t.contact.email}: ${site.email}`} className="my-6 inline-flex min-h-11 items-center break-all text-xl text-zinc-200 underline underline-offset-8 hover:text-white">{site.email}</a>
+        <p className="mt-8 max-w-xl text-lg leading-8 text-zinc-400">{site.contactText}</p>
+        {site.email && <a href={`mailto:${site.email}`} aria-label={`${t.contact.email}: ${site.email}`} className="my-6 inline-flex min-h-11 items-center break-all text-xl text-zinc-200 underline underline-offset-8 hover:text-white">{site.email}</a>}
         <ProfileLinks locale={locale} />
       </section>
     </main>

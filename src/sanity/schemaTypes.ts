@@ -46,10 +46,10 @@ export const schemaTypes = [
       defineField({ name: "email", title: "Contact email", type: "string", group: "links", validation: (r) => r.email() }),
       defineField({ name: "cv", title: "CV (PDF)", type: "file", group: "links", options: { accept: "application/pdf" },
         description: "Upload your PDF, then Publish. All CV buttons update automatically. Without a file the original CV remains available.",
-        validation: (r) => r.custom(async (value, context) => {
+        validation: (r) => r.custom((value) => {
           if (!value?.asset?._ref) return true;
-          const asset = await context.getClient({ apiVersion: "2026-10-09" }).getDocument<{ mimeType?: string }>(value.asset._ref);
-          return asset?.mimeType === "application/pdf" || "Please upload a PDF document.";
+          // Sanity's canonical file reference includes its detected extension; avoid a network request while editing.
+          return /^file-[a-f0-9]+-pdf$/.test(value.asset._ref) || "Please upload a PDF document.";
         }),
       }),
       copy("contactLead", "Contact headline", "links"), copy("contactAccent", "Contact headline ending", "links"),
