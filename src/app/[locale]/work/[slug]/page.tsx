@@ -10,7 +10,6 @@ import { requireLocale } from "@/lib/locale";
 import { routes } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
-import SiteFooter from "@/components/SiteFooter";
 
 type ProjectPageProps = {
   params: Promise<{
@@ -125,7 +124,6 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </div>
       </article>
     </main>
-    <SiteFooter locale={locale} path={`/work/${project.slug}`} />
     </>
   );
 }

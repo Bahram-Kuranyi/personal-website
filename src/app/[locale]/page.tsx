@@ -12,7 +12,6 @@ import { requireLocale } from "@/lib/locale";
 import { routes, navigation } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
-import SiteFooter from "@/components/SiteFooter";
 import ProfileLinks from "@/components/ProfileLinks";
 
 export const revalidate = 60;
@@ -183,7 +182,6 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         <ProfileLinks locale={locale} />
       </section>
     </main>
-    <SiteFooter locale={locale} />
     </>
   );
 }

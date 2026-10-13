@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
+import SiteFooter from "@/components/SiteFooter";
 import { locales } from "@/lib/site";
 import { requireLocale } from "@/lib/locale";
 import { getDictionary } from "@/data/locales";
@@ -25,9 +26,10 @@ export default async function RootLayout({ children, params }: { children: React
       lang={locale}
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body id="top" className="min-h-full flex flex-col">
         <a href="#main-content" className="skip-link">{getDictionary(locale).navigation.skip}</a>
         {children}
+        <SiteFooter />
       </body>
     </html>
   );

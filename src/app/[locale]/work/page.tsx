@@ -8,7 +8,6 @@ import { requireLocale } from "@/lib/locale";
 import { routes } from "@/lib/site";
 import LanguageSwitcher from "@/components/LanguageSwitcher";
 import { pageMetadata } from "@/lib/metadata";
-import SiteFooter from "@/components/SiteFooter";
 
 export const revalidate = 60;
 
@@ -78,7 +77,6 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
         </div>
       </section>
     </main>
-    <SiteFooter locale={locale} path="/work" />
     </>
   );
 }
