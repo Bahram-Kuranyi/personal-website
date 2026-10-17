@@ -6,19 +6,21 @@ See [PRODUCTION.md](./PRODUCTION.md) for route architecture, content locations, 
 
 ## Local development
 
-```powershell
-npm.cmd install
+```sh
+npm install
 # Copy .env.example to .env.local and fill the Sanity values below.
-npm.cmd run dev
+npm run dev
 ```
+
+On Windows PowerShell, use `npm.cmd` instead of `npm` if script execution is blocked. On macOS, use `npm` as shown. Keep `.env.local` private when transferring configuration between computers; copy only the application variables, not Vercel session tokens.
 
 ## Validation and production preview
 
-```powershell
-npm.cmd run lint
-npm.cmd run typecheck
-npm.cmd run build
-npm.cmd run start
+```sh
+npm run lint
+npm run typecheck
+npm run build
+npm run start
 ```
 
 Configure `SITE_URL` before the production build and keep the same value at runtime. Missing or non-HTTPS/local production origins fail explicitly. No final production domain has been assumed. Run `node --test tests/site-origin.test.mjs` to check origin validation.
