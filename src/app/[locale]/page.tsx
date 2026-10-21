@@ -97,7 +97,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         id="work"
         className="mx-auto max-w-7xl px-6 py-28 md:px-12 lg:px-16 lg:py-40"
       >
-        <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div className="relative isolate mb-10 flex min-w-0 flex-col items-start justify-between gap-5 before:pointer-events-none before:absolute before:-inset-x-6 before:-inset-y-8 before:-z-10 before:bg-[radial-gradient(ellipse_at_left,rgba(0,0,0,0.9),transparent_80%)] md:mb-14 md:flex-row md:items-end md:gap-6 md:before:hidden">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
               {t.work.selected}
@@ -110,7 +110,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
 
           <Link
             href={routes.work(locale)}
-            className="text-sm text-zinc-400 transition hover:text-white"
+            className="inline-flex min-h-11 shrink-0 items-center text-sm text-zinc-300 transition hover:text-white"
           >
             {t.work.all} →
           </Link>
@@ -156,11 +156,11 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {t.nav.about}
         </h2>
 
-        <p className="mt-8 max-w-4xl text-3xl leading-tight tracking-tight text-zinc-200 md:text-5xl">
+        <p className="mt-8 max-w-4xl hyphens-auto [overflow-wrap:anywhere] text-[clamp(1.875rem,5vw+0.7rem,2.25rem)] leading-[1.2] tracking-tight text-zinc-200 md:text-5xl md:leading-tight">
           {site.aboutLead}
-          <span className="text-zinc-600"> {site.aboutAccent}</span>
         </p>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">{site.about}</p>
+        {site.aboutClosing && <p className="mt-8 text-xl leading-relaxed tracking-tight text-zinc-300 md:text-2xl">{site.aboutClosing}</p>}
       </section>
 
       {/* CONTACT */}

@@ -11,7 +11,7 @@ type ProjectCardProps = {
 
 export default function ProjectCard({ project, locale }: ProjectCardProps) {
   return (
-    <Link href={routes.project(locale, project.slug)} aria-label={`${getDictionary(locale).work.project}: ${project.title}`} className="project-card group block rounded-[2rem]">
+    <Link href={routes.project(locale, project.slug)} aria-label={`${getDictionary(locale).work.project}: ${project.title}`} className="project-card group block min-w-0 rounded-[2rem]">
       <article className="overflow-hidden rounded-[2rem] border border-white/10 bg-zinc-950 transition duration-500 hover:-translate-y-1 hover:border-white/20">
         <div className="aspect-[16/10] overflow-hidden">
           <ProjectMedia project={project} locale={locale} />
@@ -22,7 +22,7 @@ export default function ProjectCard({ project, locale }: ProjectCardProps) {
             {project.category}
           </p>
 
-          <h3 className="mt-4 text-2xl font-medium tracking-tight">
+          <h3 className="mt-4 [overflow-wrap:anywhere] text-2xl font-medium tracking-tight">
             {project.title}
           </h3>
 
