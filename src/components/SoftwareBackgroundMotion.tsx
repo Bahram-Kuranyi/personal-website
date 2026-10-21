@@ -7,6 +7,7 @@ import { getMorphFrame, MORPH_END } from "./softwareBackgroundMorph";
 /** Owns motion only; the SVG artwork is passed through from the server. */
 export default function SoftwareBackgroundMotion({ children }: { children: ReactNode }) {
   const backgroundRef = useRef<HTMLDivElement>(null);
+  const pulsePlayed = useRef(false);
 
   useEffect(() => {
     const background = backgroundRef.current;
@@ -17,6 +18,8 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
     let needsMeasurement = true;
     let scrollRange = 1;
     let previousProgress: number | null = null;
+    let previousScrollProgress: number | null = null;
+    let pulseTimer: ReturnType<typeof setTimeout> | undefined;
     const fragments = Array.from(background.querySelectorAll<SVGGElement>("[data-morph-fragment]"));
     const properties = ["--software-travel", "--hand-opacity", "--fragment-opacity", "--network-opacity"];
     const writtenProperties = new Map<string, string>();
@@ -33,7 +36,13 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
       frame = null;
     }
 
+    function settlePulse() {
+      clearTimeout(pulseTimer);
+      if (background && pulsePlayed.current) background.dataset.energyPulse = "played";
+    }
+
     function reset() {
+      settlePulse();
       properties.forEach((property) => background?.style.removeProperty(property));
       fragments.forEach((fragment) => fragment.style.removeProperty("transform"));
       writtenProperties.clear();
@@ -52,7 +61,17 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
 
       // Position-based movement reverses immediately on upward scrolling and
       // holds its exact position at rest, without a perpetual animation loop.
-      const progress = Math.min(MORPH_END, Math.max(0, window.scrollY / scrollRange));
+      const scrollProgress = Math.max(0, window.scrollY / scrollRange);
+      // Crossing detection also handles one large scroll step across the midpoint.
+      const atMidpoint = scrollProgress >= 0.47 && scrollProgress <= 0.53;
+      const crossedMidpoint = previousScrollProgress !== null && previousScrollProgress < 0.47 && scrollProgress >= 0.47;
+      if (!pulsePlayed.current && (atMidpoint || crossedMidpoint)) {
+        pulsePlayed.current = true;
+        background.dataset.energyPulse = "active";
+        pulseTimer = setTimeout(settlePulse, 720);
+      }
+      previousScrollProgress = scrollProgress;
+      const progress = Math.min(MORPH_END, scrollProgress);
       if (progress === previousProgress) return;
       const scene = getMorphFrame(progress);
       // Hidden hand layers no longer need inherited transform updates.
@@ -92,7 +111,7 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
     }
 
     function handleVisibility() {
-      if (document.hidden) cancelFrame();
+      if (document.hidden) { cancelFrame(); settlePulse(); }
       else measure();
     }
 

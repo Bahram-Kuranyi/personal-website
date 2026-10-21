@@ -80,17 +80,17 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
             <g transform={side === "human" ? `rotate(${humanPose.angle} ${humanPose.x} ${humanPose.y})` : `rotate(${robotPose.angle} ${robotPose.x} ${robotPose.y})`}>
             <g clipPath={`url(#${id}-${side})`}>
               <path d={outline} fill="currentColor" fillOpacity="0.045" />
-              <path d={outline} stroke="currentColor" strokeOpacity="0.12" strokeWidth="1" />
-              <path d={outline} fill={`url(#${id}-fragments)`} fillOpacity="0.55" />
+              <path d={outline} stroke="currentColor" strokeOpacity="0.15" strokeWidth="1.1" />
+              <path d={outline} fill={`url(#${id}-fragments)`} fillOpacity="0.6" />
               {lines.map((line) => (
-                <path key={line} d={line} stroke="currentColor" strokeOpacity="0.2" strokeWidth="0.8" strokeDasharray="24 14 3 12" />
+                <path key={line} d={line} stroke="currentColor" strokeOpacity="0.24" strokeWidth="0.9" strokeDasharray="24 14 3 12" />
               ))}
             </g>
             </g>
           </g>
         ))}
 
-        <g className={styles.network} data-layer="system" stroke="#93c5fd" strokeWidth="0.8">
+        <g className={styles.network} data-layer="system" stroke="#93c5fd" strokeWidth="0.95">
           {systemLinks.map(([from, to]) => {
             const start = systemNodes[from];
             const end = systemNodes[to];
@@ -99,7 +99,7 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
               <path
                 key={`${from}-${to}`}
                 d={`M${start[0]} ${start[1]} C${middleX} ${start[1]} ${middleX} ${end[1]} ${end[0]} ${end[1]}`}
-                opacity="0.3"
+                opacity="0.35"
               />
             );
           })}
@@ -108,15 +108,23 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
               <circle cx={x} cy={y} r="2.5" fill="#c7d2fe" stroke="none" opacity="0.65" />
               <circle cx={x} cy={y} r="9" opacity="0.22" />
               {index % 2 === 0 && (
-                <path d={`M${x - 38} ${y - 25} v-12 h18 M${x + 38} ${y + 25} v12 h-18`} opacity="0.3" />
+                <path d={`M${x - 38} ${y - 25} v-12 h18 M${x + 38} ${y + 25} v12 h-18`} opacity="0.35" />
               )}
             </g>
           ))}
         </g>
+        <g className={styles.pulsePaths} stroke="#dbeafe" strokeWidth="1.2" strokeLinecap="round">
+          {systemLinks.slice(2, 5).map(([from, to]) => {
+            const start = systemNodes[from];
+            const end = systemNodes[to];
+            const middleX = (start[0] + end[0]) / 2;
+            return <path key={`${from}-${to}`} pathLength="1" d={`M${start[0]} ${start[1]} C${middleX} ${start[1]} ${middleX} ${end[1]} ${end[0]} ${end[1]}`} />;
+          })}
+        </g>
         <g className={styles.fragments} fontFamily="monospace" fontSize="11">
           {morphFragments.map((fragment, index) => (
             <g key={index} data-morph-fragment={index}>
-              <text x={fragment.x} y={fragment.y} fill={fragment.side === "human" ? "#a5b4fc" : "#7dd3fc"}>
+              <text className={index === 2 || index === 7 || index === 18 ? styles.pulseFragment : undefined} x={fragment.x} y={fragment.y} fill={fragment.side === "human" ? "#a5b4fc" : "#7dd3fc"}>
                 {fragment.token}
               </text>
             </g>

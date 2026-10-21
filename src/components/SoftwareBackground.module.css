@@ -46,7 +46,7 @@
 }
 
 .fragments {
-  opacity: calc(var(--fragment-opacity, 0) * 0.55);
+  opacity: calc(var(--fragment-opacity, 0) * 0.62);
 }
 
 .network {
@@ -71,4 +71,44 @@
   .canvas {
     opacity: 0.8;
   }
+}
+
+/* A single, bounded energy response. No geometry changes or looping animation. */
+.pulsePaths { opacity: 0; }
+.pulsePaths path { stroke-dasharray: 0.16 1; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .background[data-energy-pulse="active"] .network {
+    animation: charge 720ms ease-out;
+  }
+  .background[data-energy-pulse="active"] .pulsePaths {
+    animation: pulseVisibility 720ms ease-out;
+  }
+  .background[data-energy-pulse="active"] .pulsePaths path {
+    animation: pulseTravel 720ms ease-in-out;
+  }
+  .background[data-energy-pulse="active"] .pulseFragment {
+    animation: fragmentResponse 720ms ease-out;
+  }
+}
+
+@keyframes charge {
+  0%, 100% { filter: brightness(1); }
+  25% { filter: brightness(1.65); }
+}
+@keyframes pulseVisibility {
+  0%, 12%, 100% { opacity: 0; }
+  35% { opacity: var(--pulse-strength, 0.5); }
+  70% { opacity: var(--pulse-strength, 0.5); }
+}
+@keyframes pulseTravel {
+  from { stroke-dashoffset: 0.16; }
+  to { stroke-dashoffset: -1; }
+}
+@keyframes fragmentResponse {
+  0%, 25%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(-2px); opacity: 0.65; }
+}
+@media (max-width: 767px) {
+  .background { --pulse-strength: 0.3; }
 }
