@@ -121,3 +121,28 @@ language-alternate architecture is unchanged. No visible header logo added.
   and review of the branch preview remain appropriate before merging.
 - Production code is unchanged until this branch is merged; the authorized
   CMS live-link fill is already published.
+
+## Follow-up from physical iPhone review
+
+The owner found the initial mobile About scale too large, supplied a screenshot
+of the Selected Work heading being covered, and requested a prominent horizontal
+lightning shape instead of the subtle network pulse.
+
+- About now uses an 18–22px mobile clamp with 1.65 line height; automatic
+  hyphenation removed. Measured 18px at 320/375, 18.72px at 390 and 20.54px at
+  428. Tablet/desktop remain 48px. All CMS wording is unchanged.
+- Removed the negatively stacked pseudo-element behind the Work heading.
+  Contrast now comes from the heading container's own background, which cannot
+  paint over its text. The fixed decorative scene now sits at z-index -1 within
+  the isolated main stacking context. The exact iPhone compositing defect was
+  not reproduced locally; this removes the overlapping layer implicated by the
+  screenshot. A repeat physical-device check remains necessary.
+- Replaced three curved network pulse paths with a separate responsive SVG
+  lightning bolt spanning the viewport, with a white core, cool-blue halo and
+  small branches. A single 900ms draw-and-fade replaces the previous 720ms pulse;
+  there is no strobe or screen flash. Once-per-visit and reduced-motion guards
+  remain in place. Runtime observation confirmed activation at 52.9% scroll and
+  unchanged 390px document width; the bolt was visually inspected mid-animation.
+- EN/DE homepages checked at 320,375,390,428,768,1024,1440: no horizontal overflow.
+  Mobile About and Selected Work screenshots reviewed after production build.
+- Lint, TypeScript, all 3 existing tests and the production build passed again.

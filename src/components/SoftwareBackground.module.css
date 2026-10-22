@@ -1,7 +1,7 @@
 .background {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
@@ -74,21 +74,34 @@
 }
 
 /* A single, bounded energy response. No geometry changes or looping animation. */
-.pulsePaths { opacity: 0; }
-.pulsePaths path { stroke-dasharray: 0.16 1; }
+/* Separate responsive viewBox keeps the whole horizontal bolt visible on phones. */
+.lightning {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 100%;
+  height: clamp(120px, 18vw, 240px);
+  transform: translateY(-50%);
+  opacity: 0;
+  overflow: visible;
+}
+.lightning path { stroke-dasharray: 1; stroke-dashoffset: 0; }
+.lightningHalo { stroke: #7dd3fc; stroke-width: 16; filter: blur(5px); opacity: 0.45; }
+.lightningCore { stroke: #eff6ff; stroke-width: 3; }
+.lightningBranch { stroke: #bae6fd; stroke-width: 1.5; opacity: 0.7; }
 
 @media (prefers-reduced-motion: no-preference) {
   .background[data-energy-pulse="active"] .network {
-    animation: charge 720ms ease-out;
+    animation: charge 900ms ease-out;
   }
-  .background[data-energy-pulse="active"] .pulsePaths {
-    animation: pulseVisibility 720ms ease-out;
+  .background[data-energy-pulse="active"] .lightning {
+    animation: pulseVisibility 900ms ease-out;
   }
-  .background[data-energy-pulse="active"] .pulsePaths path {
-    animation: pulseTravel 720ms ease-in-out;
+  .background[data-energy-pulse="active"] .lightning path {
+    animation: pulseTravel 900ms ease-in-out;
   }
   .background[data-energy-pulse="active"] .pulseFragment {
-    animation: fragmentResponse 720ms ease-out;
+    animation: fragmentResponse 900ms ease-out;
   }
 }
 
@@ -97,18 +110,15 @@
   25% { filter: brightness(1.65); }
 }
 @keyframes pulseVisibility {
-  0%, 12%, 100% { opacity: 0; }
-  35% { opacity: var(--pulse-strength, 0.5); }
-  70% { opacity: var(--pulse-strength, 0.5); }
+  0%, 8%, 100% { opacity: 0; }
+  28%, 55% { opacity: 1; }
+  78% { opacity: 0.65; }
 }
 @keyframes pulseTravel {
-  from { stroke-dashoffset: 0.16; }
-  to { stroke-dashoffset: -1; }
+  0%, 8% { stroke-dashoffset: 1; }
+  40%, 100% { stroke-dashoffset: 0; }
 }
 @keyframes fragmentResponse {
   0%, 25%, 100% { transform: translateY(0); opacity: 1; }
   50% { transform: translateY(-2px); opacity: 0.65; }
-}
-@media (max-width: 767px) {
-  .background { --pulse-strength: 0.3; }
 }

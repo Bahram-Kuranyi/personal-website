@@ -68,7 +68,7 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
       if (!pulsePlayed.current && (atMidpoint || crossedMidpoint)) {
         pulsePlayed.current = true;
         background.dataset.energyPulse = "active";
-        pulseTimer = setTimeout(settlePulse, 720);
+        pulseTimer = setTimeout(settlePulse, 900);
       }
       previousScrollProgress = scrollProgress;
       const progress = Math.min(MORPH_END, scrollProgress);

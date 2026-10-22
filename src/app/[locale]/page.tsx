@@ -97,7 +97,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
         id="work"
         className="mx-auto max-w-7xl px-6 py-28 md:px-12 lg:px-16 lg:py-40"
       >
-        <div className="relative isolate mb-10 flex min-w-0 flex-col items-start justify-between gap-5 before:pointer-events-none before:absolute before:-inset-x-6 before:-inset-y-8 before:-z-10 before:bg-[radial-gradient(ellipse_at_left,rgba(0,0,0,0.9),transparent_80%)] md:mb-14 md:flex-row md:items-end md:gap-6 md:before:hidden">
+        <div className="relative mb-10 flex min-w-0 flex-col items-start justify-between gap-5 bg-[radial-gradient(ellipse_at_left,rgba(0,0,0,0.9),transparent_80%)] md:mb-14 md:flex-row md:items-end md:gap-6 md:bg-none">
           <div>
             <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
               {t.work.selected}
@@ -156,7 +156,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           {t.nav.about}
         </h2>
 
-        <p className="mt-8 max-w-4xl hyphens-auto [overflow-wrap:anywhere] text-[clamp(1.875rem,5vw+0.7rem,2.25rem)] leading-[1.2] tracking-tight text-zinc-200 md:text-5xl md:leading-tight">
+        <p className="mt-8 max-w-4xl [overflow-wrap:anywhere] text-[clamp(1.125rem,4.8vw,1.375rem)] leading-[1.65] tracking-tight text-zinc-200 md:text-5xl md:leading-tight">
           {site.aboutLead}
         </p>
         <p className="mt-8 max-w-2xl text-lg leading-8 text-zinc-400">{site.about}</p>

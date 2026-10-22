@@ -113,14 +113,6 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
             </g>
           ))}
         </g>
-        <g className={styles.pulsePaths} stroke="#dbeafe" strokeWidth="1.2" strokeLinecap="round">
-          {systemLinks.slice(2, 5).map(([from, to]) => {
-            const start = systemNodes[from];
-            const end = systemNodes[to];
-            const middleX = (start[0] + end[0]) / 2;
-            return <path key={`${from}-${to}`} pathLength="1" d={`M${start[0]} ${start[1]} C${middleX} ${start[1]} ${middleX} ${end[1]} ${end[0]} ${end[1]}`} />;
-          })}
-        </g>
         <g className={styles.fragments} fontFamily="monospace" fontSize="11">
           {morphFragments.map((fragment, index) => (
             <g key={index} data-morph-fragment={index}>
@@ -130,6 +122,11 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
             </g>
           ))}
         </g>
+      </svg>
+      <svg className={styles.lightning} viewBox="0 0 1200 200" preserveAspectRatio="none" fill="none" focusable="false" strokeLinecap="round" strokeLinejoin="round">
+        <path className={styles.lightningHalo} pathLength="1" d="M20 110 180 96 235 117 330 60 310 105 475 84 540 122 665 50 640 108 790 85 850 124 975 80 1030 105 1180 92" />
+        <path className={styles.lightningCore} pathLength="1" d="M20 110 180 96 235 117 330 60 310 105 475 84 540 122 665 50 640 108 790 85 850 124 975 80 1030 105 1180 92" />
+        <path className={styles.lightningBranch} pathLength="1" d="M330 60 385 48 410 20 M540 122 575 152 630 143 675 178 M850 124 900 153 950 146" />
       </svg>
     </SoftwareBackgroundMotion>
   );
