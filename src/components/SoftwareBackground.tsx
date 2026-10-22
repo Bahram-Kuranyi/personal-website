@@ -116,17 +116,12 @@ export default function SoftwareBackground({ id }: SoftwareBackgroundProps) {
         <g className={styles.fragments} fontFamily="monospace" fontSize="11">
           {morphFragments.map((fragment, index) => (
             <g key={index} data-morph-fragment={index}>
-              <text className={index === 2 || index === 7 || index === 18 ? styles.pulseFragment : undefined} x={fragment.x} y={fragment.y} fill={fragment.side === "human" ? "#a5b4fc" : "#7dd3fc"}>
+              <text x={fragment.x} y={fragment.y} fill={fragment.side === "human" ? "#a5b4fc" : "#7dd3fc"}>
                 {fragment.token}
               </text>
             </g>
           ))}
         </g>
-      </svg>
-      <svg className={styles.lightning} viewBox="0 0 1200 200" preserveAspectRatio="none" fill="none" focusable="false" strokeLinecap="round" strokeLinejoin="round">
-        <path className={styles.lightningHalo} pathLength="1" d="M20 110 180 96 235 117 330 60 310 105 475 84 540 122 665 50 640 108 790 85 850 124 975 80 1030 105 1180 92" />
-        <path className={styles.lightningCore} pathLength="1" d="M20 110 180 96 235 117 330 60 310 105 475 84 540 122 665 50 640 108 790 85 850 124 975 80 1030 105 1180 92" />
-        <path className={styles.lightningBranch} pathLength="1" d="M330 60 385 48 410 20 M540 122 575 152 630 143 675 178 M850 124 900 153 950 146" />
       </svg>
     </SoftwareBackgroundMotion>
   );

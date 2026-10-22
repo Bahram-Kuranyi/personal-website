@@ -146,3 +146,29 @@ lightning shape instead of the subtle network pulse.
 - EN/DE homepages checked at 320,375,390,428,768,1024,1440: no horizontal overflow.
   Mobile About and Selected Work screenshots reviewed after production build.
 - Lint, TypeScript, all 3 existing tests and the production build passed again.
+
+## Two-strike lightning across public pages — 23 October 2026
+
+Replaced homepage-only lightning with shared `ScrollLightning` on EN/DE Home,
+Work and project-detail pages. Studio is excluded. The SVG now slopes from upper
+left to lower right at roughly 15 degrees from vertical, with a fixed aspect
+ratio so the angle stays consistent across screen sizes.
+
+Each visit allows one downward midpoint strike followed by one upward midpoint
+strike. A 44–56% dead band prevents tiny reversals from using the second strike.
+Both strikes last 900ms with a 300ms settling gap before another can begin.
+Further scrolling does not replay either strike. Path-keyed visits reset on
+navigation; browser checks confirmed project navigation, Back and Forward reset
+the count. The homepage's existing scroll-reactive hand/network morph is retained.
+Reduced-motion preference disables triggering and animation; timers, frame
+requests and listeners are cleaned up on unmount.
+
+Validation:
+- Lint, TypeScript and production build passed.
+- All 7 tests passed, including 4 new behavioral tests for the two-strike limit,
+  midpoint jitter, fast jumps/deferred return, and fresh-visit allowances.
+- Browser observed count 0 → 1 downward → 2 upward → 2 on further scrolling.
+- Project navigation, Back and Forward each returned count to 0.
+- 24 EN/DE Home/Work/project cases at 320,390,768,1440 had exactly one lightning
+  scene, a fresh counter and matching viewport/document widths.
+- The steep bolt was visually reviewed on mobile Work and project pages.

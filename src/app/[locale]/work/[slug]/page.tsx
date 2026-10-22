@@ -1,3 +1,4 @@
+import ScrollLightning from "@/components/ScrollLightning";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
@@ -56,6 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
+      <ScrollLightning />
       <ProjectVisualScene variant={project.visualVariant} />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link

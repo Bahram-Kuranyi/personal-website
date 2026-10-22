@@ -1,3 +1,4 @@
+import ScrollLightning from "@/components/ScrollLightning";
 import Link from "next/link";
 
 import HeroCard from "@/components/HeroCard";
@@ -29,6 +30,7 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate bg-black text-white [&>section]:relative [&>section]:z-10">
+      <ScrollLightning />
       <SoftwareBackground id="hero-software" />
       {/* HERO */}
       <section className="relative isolate min-h-screen overflow-hidden">

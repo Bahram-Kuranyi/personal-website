@@ -1,0 +1,47 @@
+.scene {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  user-select: none;
+}
+.bolt {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 90svh;
+  width: auto;
+  max-width: 95vw;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+}
+.bolt path { stroke-dasharray: 1; }
+.halo { stroke: #7dd3fc; stroke-width: 16; filter: blur(5px); opacity: 0.45; }
+.core { stroke: #eff6ff; stroke-width: 3; }
+.branch { stroke: #bae6fd; stroke-width: 1.5; opacity: 0.7; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .scene[data-active="true"][data-count="1"] .bolt { animation: glowDown 900ms ease-out; }
+  .scene[data-active="true"][data-count="2"] .bolt { animation: glowUp 900ms ease-out; }
+  .scene[data-active="true"][data-count="1"] path { animation: drawDown 900ms ease-in-out; }
+  .scene[data-active="true"][data-count="2"] path { animation: drawUp 900ms ease-in-out; }
+}
+@keyframes glowDown {
+  0%, 8%, 100% { opacity: 0; }
+  28%, 55% { opacity: 1; }
+  78% { opacity: 0.65; }
+}
+@keyframes glowUp {
+  0%, 8%, 100% { opacity: 0; }
+  28%, 55% { opacity: 1; }
+  78% { opacity: 0.65; }
+}
+@keyframes drawDown {
+  0%, 8% { stroke-dashoffset: 1; }
+  40%, 100% { stroke-dashoffset: 0; }
+}
+@keyframes drawUp {
+  0%, 8% { stroke-dashoffset: -1; }
+  40%, 100% { stroke-dashoffset: 0; }
+}
