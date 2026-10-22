@@ -59,7 +59,7 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
                 {project.category}
               </p>
 
-              <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-6xl">
+              <h2 className="mt-4 min-w-0 [overflow-wrap:anywhere] text-4xl font-medium tracking-tight md:text-6xl">
                 <Link href={routes.project(locale, project.slug)} className="transition hover:text-zinc-300">{project.title}</Link>
               </h2>
 
