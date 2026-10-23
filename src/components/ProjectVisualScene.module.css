@@ -27,7 +27,7 @@
   height: auto;
   color: rgb(var(--accent));
   stroke: currentColor;
-  stroke-width: 0.8;
+  stroke-width: 0.9;
   mask-image: linear-gradient(to right, transparent 12%, black 53%),
     linear-gradient(to bottom, black 55%, transparent 95%);
   mask-composite: intersect;
@@ -35,7 +35,7 @@
 
 .grid { opacity: 0.09; }
 .frames { opacity: 0.23; }
-.paths { opacity: 0.34; }
+.paths { opacity: 0.38; }
 .ring { opacity: 0.22; }
 .point { fill: #f4d398; stroke: none; opacity: 0.65; }
 .nodes text, .fragments text {
@@ -46,7 +46,7 @@
   letter-spacing: 1.4px;
 }
 .nodes text { opacity: 0.4; }
-.fragments { opacity: 0.2; }
+.fragments { opacity: 0.23; }
 
 @media (max-width: 767px) {
   .canvas { top: 140px; right: -210px; width: 730px; opacity: 0.8; }

@@ -1,8 +1,10 @@
+import ScrollLightning from "@/components/ScrollLightning";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import ProjectMedia from "@/components/ProjectMedia";
 import ProjectVisualScene from "@/components/ProjectVisualScene";
+import ExternalLinkIcon from "@/components/ExternalLinkIcon";
 import CaseStudy from "@/components/CaseStudy";
 import { getProjects, getProject, getSiteSettings } from "@/sanity/lib/content";
 import { getDictionary } from "@/data/locales";
@@ -55,6 +57,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
+      <ScrollLightning />
       <ProjectVisualScene variant={project.visualVariant} />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
@@ -67,12 +70,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <LanguageSwitcher locale={locale} path={`/work/${project.slug}`} />
       </header>
 
-      <article className="relative z-10 mx-auto max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
+      <article className="relative z-10 mx-auto min-w-0 max-w-7xl px-6 pb-32 pt-20 md:px-12 lg:px-16">
         <p className="text-xs uppercase tracking-[0.28em] text-zinc-500">
           {project.category}
         </p>
 
-        <h1 className="mt-6 max-w-5xl text-6xl font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">
+        <h1 className="mt-6 min-w-0 max-w-5xl [overflow-wrap:anywhere] text-[clamp(3rem,12vw+0.6rem,4rem)] font-medium leading-[0.95] tracking-[-0.04em] md:text-8xl">
           {project.title}
         </h1>
 
@@ -91,8 +94,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           ))}
         </div>
 
-        {project.sourceUrl && <a href={project.sourceUrl} className="mt-8 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.source} ↗</a>}
-        {project.liveUrl && <a href={project.liveUrl} className="ml-6 mt-8 inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.live} ↗</a>}
+        {(project.sourceUrl || project.liveUrl) && <div className="mt-8 flex flex-wrap gap-x-6 gap-y-2">
+          {project.sourceUrl && <a href={project.sourceUrl} className="inline-flex min-h-11 items-center gap-2 text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.source}<ExternalLinkIcon /></a>}
+          {project.liveUrl && <a href={project.liveUrl} className="inline-flex min-h-11 items-center gap-2 text-sm text-zinc-300 underline underline-offset-4 hover:text-white">{t.detail.live}<ExternalLinkIcon /></a>}
+        </div>}
         <figure className="mt-20">
           <div className="overflow-hidden rounded-[2rem] border border-white/10">
             <ProjectMedia project={project} locale={locale} />
@@ -102,14 +107,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <CaseStudy sections={project.caseStudy} locale={locale} />
         {!!project.assets?.length && <ul className="mt-10 space-y-2">{project.assets.map((asset) => <li key={asset.url}><a href={asset.url} className="inline-flex min-h-11 items-center text-sm text-zinc-300 underline underline-offset-4">{asset.filename} ↓</a></li>)}</ul>}
         <div className="mt-24 flex flex-col justify-between gap-8 border-t border-white/10 pt-10 sm:flex-row sm:items-end">
-          {projects.length > 1 && <div>
+          {projects.length > 1 && <div className="min-w-0">
             <p className="text-xs uppercase tracking-[0.25em] text-zinc-600">
               {t.detail.next}
             </p>
 
             <Link
               href={routes.project(locale, nextProject.slug)}
-              className="mt-3 block text-3xl font-medium tracking-tight transition hover:text-zinc-400 md:text-4xl"
+              className="mt-3 block [overflow-wrap:anywhere] text-3xl font-medium tracking-tight transition hover:text-zinc-400 md:text-4xl"
             >
               {nextProject.title} →
             </Link>

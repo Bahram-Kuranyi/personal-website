@@ -1,3 +1,4 @@
+import ScrollLightning from "@/components/ScrollLightning";
 import Link from "next/link";
 import WorkConstellation from "@/components/WorkConstellation";
 import Image from "next/image";
@@ -25,6 +26,7 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
   return (
     <>
     <main id="main-content" tabIndex={-1} className="relative isolate min-h-screen bg-black text-white">
+      <ScrollLightning />
       <WorkConstellation />
       <header className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-8 md:px-12 lg:px-16">
         <Link
@@ -59,7 +61,7 @@ export default async function WorkPage({ params }: { params: Promise<{ locale: s
                 {project.category}
               </p>
 
-              <h2 className="mt-4 text-4xl font-medium tracking-tight md:text-6xl">
+              <h2 className="mt-4 min-w-0 [overflow-wrap:anywhere] text-4xl font-medium tracking-tight md:text-6xl">
                 <Link href={routes.project(locale, project.slug)} className="transition hover:text-zinc-300">{project.title}</Link>
               </h2>
 

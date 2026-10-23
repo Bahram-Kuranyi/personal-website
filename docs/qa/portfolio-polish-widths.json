@@ -1,0 +1,338 @@
+[
+  {
+    "route": "/en",
+    "expected": 320,
+    "font": "30px",
+    "inner": 320,
+    "scroll": 320,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 320,
+    "font": "30px",
+    "inner": 320,
+    "scroll": 320,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 320,
+    "font": null,
+    "inner": 320,
+    "scroll": 320,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 320,
+    "font": null,
+    "inner": 320,
+    "scroll": 320,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 320,
+    "font": null,
+    "inner": 320,
+    "scroll": 320,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 320,
+    "font": null,
+    "inner": 320,
+    "scroll": 320,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 375,
+    "font": "30px",
+    "inner": 375,
+    "scroll": 375,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 375,
+    "font": "30px",
+    "inner": 375,
+    "scroll": 375,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 375,
+    "font": null,
+    "inner": 375,
+    "scroll": 375,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 375,
+    "font": null,
+    "inner": 375,
+    "scroll": 375,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 375,
+    "font": null,
+    "inner": 375,
+    "scroll": 375,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 375,
+    "font": null,
+    "inner": 375,
+    "scroll": 375,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 390,
+    "font": "30.7px",
+    "inner": 390,
+    "scroll": 390,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 390,
+    "font": "30.7px",
+    "inner": 390,
+    "scroll": 390,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 390,
+    "font": null,
+    "inner": 390,
+    "scroll": 390,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 390,
+    "font": null,
+    "inner": 390,
+    "scroll": 390,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 390,
+    "font": null,
+    "inner": 390,
+    "scroll": 390,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 390,
+    "font": null,
+    "inner": 390,
+    "scroll": 390,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 428,
+    "font": "32.6px",
+    "inner": 428,
+    "scroll": 428,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 428,
+    "font": "32.6px",
+    "inner": 428,
+    "scroll": 428,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 428,
+    "font": null,
+    "inner": 428,
+    "scroll": 428,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 428,
+    "font": null,
+    "inner": 428,
+    "scroll": 428,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 428,
+    "font": null,
+    "inner": 428,
+    "scroll": 428,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 428,
+    "font": null,
+    "inner": 428,
+    "scroll": 428,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 768,
+    "font": "48px",
+    "inner": 768,
+    "scroll": 768,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 768,
+    "font": "48px",
+    "inner": 768,
+    "scroll": 768,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 768,
+    "font": null,
+    "inner": 768,
+    "scroll": 768,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 768,
+    "font": null,
+    "inner": 768,
+    "scroll": 768,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 768,
+    "font": null,
+    "inner": 768,
+    "scroll": 768,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 768,
+    "font": null,
+    "inner": 768,
+    "scroll": 768,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 1024,
+    "font": "48px",
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 1024,
+    "font": "48px",
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 1024,
+    "font": null,
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 1024,
+    "font": null,
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 1024,
+    "font": null,
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 1024,
+    "font": null,
+    "inner": 1024,
+    "scroll": 1024,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/en",
+    "expected": 1440,
+    "font": "48px",
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/de",
+    "expected": 1440,
+    "font": "48px",
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "BahramKuranyi"
+  },
+  {
+    "route": "/en/work",
+    "expected": 1440,
+    "font": null,
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "Work thattells the story."
+  },
+  {
+    "route": "/de/work",
+    "expected": 1440,
+    "font": null,
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "Projekte, diefür sich sprechen."
+  },
+  {
+    "route": "/en/work/personal-website-v2",
+    "expected": 1440,
+    "font": null,
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "Personal Website - Bahramkuranyi.de"
+  },
+  {
+    "route": "/de/work/personal-website-v2",
+    "expected": 1440,
+    "font": null,
+    "inner": 1440,
+    "scroll": 1440,
+    "title": "Personal Website - Bahramkuranyi.de"
+  }
+]

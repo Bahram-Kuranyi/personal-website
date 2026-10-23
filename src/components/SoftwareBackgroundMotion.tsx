@@ -52,7 +52,8 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
 
       // Position-based movement reverses immediately on upward scrolling and
       // holds its exact position at rest, without a perpetual animation loop.
-      const progress = Math.min(MORPH_END, Math.max(0, window.scrollY / scrollRange));
+      const scrollProgress = Math.max(0, window.scrollY / scrollRange);
+      const progress = Math.min(MORPH_END, scrollProgress);
       if (progress === previousProgress) return;
       const scene = getMorphFrame(progress);
       // Hidden hand layers no longer need inherited transform updates.
@@ -92,7 +93,7 @@ export default function SoftwareBackgroundMotion({ children }: { children: React
     }
 
     function handleVisibility() {
-      if (document.hidden) cancelFrame();
+      if (document.hidden) { cancelFrame(); }
       else measure();
     }
 

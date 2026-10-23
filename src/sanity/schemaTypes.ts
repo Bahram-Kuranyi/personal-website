@@ -40,7 +40,7 @@ export const schemaTypes = [
       copy("title", "Professional title", "identity", true),
       copy("location", "Location", "identity"),
       copy("heroLabel", "Hero label", "hero"), copy("heroText", "Hero introduction", "hero", true),
-      copy("aboutLead", "About headline", "about"), copy("aboutAccent", "About headline ending", "about"),
+      copy("aboutLead", "About headline", "about"), defineField({ name: "aboutAccent", title: "About closing line", type: "localizedText", group: "about", description: "Independent closing line below the About paragraph. English and German are edited separately. Remove this field to omit the closing line." }),
       copy("about", "About paragraph", "about", true),
       url("github", "GitHub profile", "links"), url("linkedin", "LinkedIn profile", "links"),
       defineField({ name: "email", title: "Contact email", type: "string", group: "links", validation: (r) => r.email() }),
@@ -72,7 +72,7 @@ export const schemaTypes = [
     fields: [
       defineField({ name: "title", title: "Title", type: "string", group: "summary", validation: (r) => r.required() }),
       defineField({ name: "slug", title: "Page address", type: "slug", group: "summary", options: { source: "title", maxLength: 96 },
-        description: "Generate once, then keep this address stable so existing links continue working.",
+        description: "Controls /en/work/[page-address] and /de/work/[page-address]. Editing the title does not change this address. Generate uses the title only when clicked; keep published addresses stable, as changing one breaks existing links.",
         validation: (r) => r.required().custom((value) => !value?.current || /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(value.current) || "Use lowercase letters, numbers and hyphens."),
       }),
       defineField({ name: "featured", title: "Show in Selected Work on the homepage", type: "boolean", group: "summary" }),

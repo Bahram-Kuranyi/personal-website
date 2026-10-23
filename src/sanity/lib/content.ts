@@ -25,7 +25,7 @@ export const getSiteSettings = cache(async (locale: Locale) => {
   return {
     name: raw.name, title: text(raw.title, locale), location: text(raw.location, locale),
     heroLabel: text(raw.heroLabel, locale), heroText: text(raw.heroText, locale),
-    aboutLead: text(raw.aboutLead, locale), aboutAccent: text(raw.aboutAccent, locale), about: text(raw.about, locale),
+    aboutLead: text(raw.aboutLead, locale), aboutClosing: raw.aboutAccent?.[locale]?.trim() || "", about: text(raw.about, locale),
     contactLead: text(raw.contactLead, locale), contactAccent: text(raw.contactAccent, locale), contactText: text(raw.contactText, locale),
     github: webUrl(raw.github), linkedin: webUrl(raw.linkedin), email: raw.email && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(raw.email) ? raw.email : undefined, cv,
     focus: { label: text(raw.focusLabel, locale), eyebrow: text(raw.focusEyebrow, locale), headline: text(raw.focusHeadline, locale),

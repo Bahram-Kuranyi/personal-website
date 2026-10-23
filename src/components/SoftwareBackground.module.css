@@ -1,7 +1,7 @@
 .background {
   position: fixed;
   inset: 0;
-  z-index: 0;
+  z-index: -1;
   overflow: hidden;
   pointer-events: none;
   user-select: none;
@@ -46,7 +46,7 @@
 }
 
 .fragments {
-  opacity: calc(var(--fragment-opacity, 0) * 0.55);
+  opacity: calc(var(--fragment-opacity, 0) * 0.62);
 }
 
 .network {
